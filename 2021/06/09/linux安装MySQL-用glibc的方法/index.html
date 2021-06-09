@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>用telnet连接linux |  Sharing life</title>
+      <title>linux安装MySQL[用glibc的方法].md |  Sharing life</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="https://raw.githubusercontent.com/myzyzy/my-log/image/image/football.svg" />
@@ -44,7 +44,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-用telnet连接linux"
+  id="post-linux安装MySQL-用glibc的方法"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -55,7 +55,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  用telnet连接linux
+  linux安装MySQL[用glibc的方法].md
 </h1>
  
 
@@ -63,8 +63,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2021/06/07/%E7%94%A8telnet%E8%BF%9E%E6%8E%A5linux/" class="article-date">
-  <time datetime="2021-06-07T11:13:46.000Z" itemprop="datePublished">2021-06-07</time>
+      <a href="/2021/06/09/linux%E5%AE%89%E8%A3%85MySQL-%E7%94%A8glibc%E7%9A%84%E6%96%B9%E6%B3%95/" class="article-date">
+  <time datetime="2021-06-09T13:50:09.000Z" itemprop="datePublished">2021-06-09</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/linux%E6%9C%8D%E5%8A%A1/">linux服务</a>
@@ -75,7 +75,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">184</span>
+            <span class="post-count">391</span>
         </span>
     </span>
 
@@ -99,17 +99,33 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h2 id="用telnet连接linux"><a href="#用telnet连接linux" class="headerlink" title="用telnet连接linux"></a>用telnet连接linux</h2><p>telnet传输没有经过加密，是明文的，安全性不如SSH不建议使用<br>提前关闭selinux和防火墙，配置好yum仓库</p>
-<h3 id="1-安装telnet-server-xinetd"><a href="#1-安装telnet-server-xinetd" class="headerlink" title="1.安装telnet-server xinetd"></a>1.安装telnet-server xinetd</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># yum install telnet-server xinetd        //telnet进程由xinetd服务守护</span></span><br></pre></td></tr></table></figure>
-<span id="more"></span>
+  <p>注：本次安装参照B站up主“bili逍遥bili”，采用glibc包安装。<br>所需工具：Redhat Linux（虚拟机），MobaXterm（终端工具），MySQL-5.6.44-1.el7.x86_64.rpm-bundle.tar（官网下载）。<br><a target="_blank" rel="noopener" href="https://cdn.mysql.com/archives/mysql-5.6/mysql-5.6.44-linux-glibc2.12-x86_64.tar.gz">下载地址</a></p>
+<h2 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h2><span id="more"></span>
 
-<h3 id="2-编辑telnet的配置文件"><a href="#2-编辑telnet的配置文件" class="headerlink" title="2.编辑telnet的配置文件"></a>2.编辑telnet的配置文件</h3><p>可能没有这个文件,但依旧起效</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost xinetd.d]<span class="comment"># vi /etc/xinetd.d/telnet</span></span><br></pre></td></tr></table></figure>
-<p>添加以下内容</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># default: on</span><br><span class="line"># description: The telnet server serves telnet sessions; it uses \</span><br><span class="line">#       unencrypted username/password pairs for authentication.</span><br><span class="line">service telnet</span><br><span class="line">&#123;</span><br><span class="line">        flags           = REUSE</span><br><span class="line">        socket_type     = stream</span><br><span class="line">        wait            = no</span><br><span class="line">        user            = root</span><br><span class="line">        server          = /usr/sbin/in.telnetd</span><br><span class="line">        log_on_failure  += USERID</span><br><span class="line">        disable         = no</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="3-启动xinetd服务"><a href="#3-启动xinetd服务" class="headerlink" title="3.启动xinetd服务"></a>3.启动xinetd服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost xinetd.d]<span class="comment"># systemctl start xinetd</span></span><br></pre></td></tr></table></figure>
-<h3 id="4-编辑-etc-securetty-添加以下内容"><a href="#4-编辑-etc-securetty-添加以下内容" class="headerlink" title="4.编辑/etc/securetty  添加以下内容"></a>4.编辑/etc/securetty  添加以下内容</h3><p><code>pts/1</code></p>
-<p>  pts/*为伪(虚拟)终端,保存，退出，可以用root用户登录  </p>
+<p> 一.<strong>配置本地yum仓库</strong>，由于我的linux最小化安装，在安装过程中需要另外安装某些依赖包<br>1.创建文件 <code>[root@linuxprobe ~]# mkdir -p /media/cdrom</code><br>2.挂载<code>[root@linuxprobe ~]# mount /dev/cdrom /media/cdrom</code><br>3.配置yum仓库<code>[root@linuxprobe ~]# vim /etc/yum.repos.d/rhel7.repo</code><br>4.编辑配置文件<code>[root@linuxprobe ~]# vim /etc/yum.repos.d/rhel7.repo</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[rhel7]</span><br><span class="line">name=rhel7</span><br><span class="line">baseurl=file:///media/cdrom</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br></pre></td></tr></table></figure>
+<p>二、移动和解压<br>把安装好的安装包上传到Linux的root目录下，进行解压</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost~]<span class="comment">#tar -zxf mysql-5.6.44-linux-glibc2.12-x86_64.tar.gz</span></span><br><span class="line">[root@localhost ~]<span class="comment"># mv mysql-5.6.44-linux-glibc2.12-x86_64 /usr/local/mysql</span></span><br></pre></td></tr></table></figure>
+<p>ls一下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ls</span></span><br><span class="line">anaconda-ks.cfg  mysql-5.6.44-linux-glibc2.12-x86_64.tar.gz</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>三、创建用户和更改权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># useradd -r -s /sbin/nologin mysql</span></span><br><span class="line">[root@localhost ~]<span class="comment"># chown -R mysql.mysql /usr/local/mysql</span></span><br></pre></td></tr></table></figure>
+<p>四、安装依赖包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># yum install  perl perl-devel</span></span><br><span class="line">[root@localhost ~]<span class="comment"># yum install libaio*</span></span><br><span class="line">[root@localhost ~]<span class="comment"># yum install autoconf</span></span><br></pre></td></tr></table></figure>
+<p>五、卸载自带的数据库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost mysql]<span class="comment"># yum remove mariadb-libs</span></span><br></pre></td></tr></table></figure>
+<p>六、运行脚本（在/use/local/mysql的目录下）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhostmysql]<span class="comment"># /usr/local/mysql/scripts/mysql_install_db --user=mysql</span></span><br></pre></td></tr></table></figure>
+<p>七、复制mysql.service文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost mysql]<span class="comment"># cp support-files/mysql.server /etc/init.d/mysql</span></span><br></pre></td></tr></table></figure>
+<p>八、启动mysql</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># service mysql start</span></span><br></pre></td></tr></table></figure>
+<p>九、设置密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost mysql]<span class="comment"># ./bin/mysqladmin -u root password &#x27;123456&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>十、创建软连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]<span class="comment"># ln -s /usr/local/mysql/bin/mysql /usr/bin</span></span><br></pre></td></tr></table></figure>
+<p>输入mysql -u root -p 即可打开MySQL</p>
  
       <!-- reward -->
       
@@ -174,12 +190,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2021/06/07/%E7%94%A8telnet%E8%BF%9E%E6%8E%A5linux/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2021/06/09/linux%E5%AE%89%E8%A3%85MySQL-%E7%94%A8glibc%E7%9A%84%E6%96%B9%E6%B3%95/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/telnet/" rel="tag">telnet</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li></ul>
 
     </footer>
   </div>
@@ -187,7 +203,7 @@
    
   <nav class="article-nav">
     
-      <a href="/2021/06/09/linux%E5%AE%89%E8%A3%85MySQL-%E7%94%A8glibc%E7%9A%84%E6%96%B9%E6%B3%95/" class="article-nav-link">
+      <a href="/2021/06/09/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
@@ -196,6 +212,11 @@
         </div>
       </a>
     
+    
+      <a href="/2021/06/07/%E7%94%A8telnet%E8%BF%9E%E6%8E%A5linux/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">用telnet连接linux</div>
+      </a>
     
   </nav>
 

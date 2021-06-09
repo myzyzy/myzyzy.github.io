@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-06-07T15:35:44.005Z</updated>
+  <updated>2021-06-09T14:03:34.719Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,51 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux安装MySQL[用glibc的方法].md</title>
+    <link href="http://example.com/2021/06/09/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    <id>http://example.com/2021/06/09/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/</id>
+    <published>2021-06-09T14:03:34.719Z</published>
+    <updated>2021-06-09T14:03:34.719Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;内网渗透&quot;&gt;&lt;a href=&quot;#内网渗透&quot; class=&quot;headerlink&quot; title=&quot;内网渗透&quot;&gt;&lt;/a&gt;内网渗透&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;介绍：&lt;/strong&gt; </summary>
+        
+      
+    
+    
+    
+    <category term="网络安全" scheme="http://example.com/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    
+    
+    <category term="内网渗透" scheme="http://example.com/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>linux安装MySQL[用glibc的方法].md</title>
+    <link href="http://example.com/2021/06/09/linux%E5%AE%89%E8%A3%85MySQL-%E7%94%A8glibc%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    <id>http://example.com/2021/06/09/linux%E5%AE%89%E8%A3%85MySQL-%E7%94%A8glibc%E7%9A%84%E6%96%B9%E6%B3%95/</id>
+    <published>2021-06-09T13:50:09.000Z</published>
+    <updated>2021-06-09T13:56:20.151Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;注：本次安装参照B站up主“bili逍遥bili”，采用glibc包安装。&lt;br&gt;所需工具：Redhat Linux（虚拟机），MobaXterm（终端工具），MySQL-5.6.44-1.el7.x86_64.rpm-bundle.tar（官网下载）。&lt;br&gt;&lt;a href=&quot;https://cdn.mysql.com/archives/mysql-5.6/mysql-5.6.44-linux-glibc2.12-x86_64.tar.gz&quot;&gt;下载地址&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;开始安装&quot;&gt;&lt;a href=&quot;#开始安装&quot; class=&quot;headerlink&quot; title=&quot;开始安装&quot;&gt;&lt;/a&gt;开始安装&lt;/h2&gt;</summary>
+    
+    
+    
+    <category term="linux服务" scheme="http://example.com/categories/linux%E6%9C%8D%E5%8A%A1/"/>
+    
+    
+    <category term="linux" scheme="http://example.com/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>用telnet连接linux</title>
