@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Sharing life</title>
+  
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2021-06-07T15:35:44.005Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>myzyzy</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>用telnet连接linux</title>
+    <link href="http://example.com/2021/06/07/%E7%94%A8telnet%E8%BF%9E%E6%8E%A5linux/"/>
+    <id>http://example.com/2021/06/07/%E7%94%A8telnet%E8%BF%9E%E6%8E%A5linux/</id>
+    <published>2021-06-07T11:13:46.000Z</published>
+    <updated>2021-06-07T15:35:44.005Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;用telnet连接linux&quot;&gt;&lt;a href=&quot;#用telnet连接linux&quot; class=&quot;headerlink&quot; title=&quot;用telnet连接linux&quot;&gt;&lt;/a&gt;用telnet连接linux&lt;/h2&gt;&lt;p&gt;telnet传输没有经过加密，是明文的，安全性不如SSH不建议使用&lt;br&gt;提前关闭selinux和防火墙，配置好yum仓库&lt;/p&gt;
+&lt;h3 id=&quot;1-安装telnet-server-xinetd&quot;&gt;&lt;a href=&quot;#1-安装telnet-server-xinetd&quot; class=&quot;headerlink&quot; title=&quot;1.安装telnet-server xinetd&quot;&gt;&lt;/a&gt;1.安装telnet-server xinetd&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[root@localhost ~]&lt;span class=&quot;comment&quot;&gt;# yum install telnet-server xinetd        //telnet进程由xinetd服务守护&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="linux服务" scheme="http://example.com/categories/linux%E6%9C%8D%E5%8A%A1/"/>
+    
+    
+    <category term="telnet" scheme="http://example.com/tags/telnet/"/>
+    
+    <category term="linux" scheme="http://example.com/tags/linux/"/>
+    
+  </entry>
+  
+</feed>
