@@ -51,9 +51,9 @@
     <category term="Docker" scheme="http://example.com/categories/Docker/"/>
     
     
-    <category term="docker" scheme="http://example.com/tags/docker/"/>
-    
     <category term="linux" scheme="http://example.com/tags/linux/"/>
+    
+    <category term="docker" scheme="http://example.com/tags/docker/"/>
     
   </entry>
   
