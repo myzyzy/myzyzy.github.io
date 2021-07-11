@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-06-17T14:08:15.856Z</updated>
+  <updated>2021-07-11T10:43:27.619Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>centos8网络基本管理</title>
+    <link href="http://example.com/2021/07/11/centos8%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E7%AE%A1%E7%90%86/"/>
+    <id>http://example.com/2021/07/11/centos8%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E7%AE%A1%E7%90%86/</id>
+    <published>2021-07-11T10:38:40.000Z</published>
+    <updated>2021-07-11T10:43:27.619Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;centos8网络基本管理&quot;&gt;&lt;a href=&quot;#centos8网络基本管理&quot; class=&quot;headerlink&quot; title=&quot;centos8网络基本管理&quot;&gt;&lt;/a&gt;centos8网络基本管理&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;简介：&lt;/strong&gt; centos8没有传统的network.service，centos8采用NetworkManager.service服务管理网络。NM能管理各种网络：有线网卡、无线网卡 ， 动态ip、静态ip，以太网、非以太网，物理网卡、虚拟网卡。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="centos8网络" scheme="http://example.com/categories/centos8%E7%BD%91%E7%BB%9C/"/>
+    
+    
+    <category term="linux" scheme="http://example.com/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>内网渗透</title>
@@ -51,9 +70,9 @@
     <category term="Docker" scheme="http://example.com/categories/Docker/"/>
     
     
-    <category term="docker" scheme="http://example.com/tags/docker/"/>
-    
     <category term="linux" scheme="http://example.com/tags/linux/"/>
+    
+    <category term="docker" scheme="http://example.com/tags/docker/"/>
     
   </entry>
   
@@ -62,11 +81,10 @@
     <link href="http://example.com/2021/06/09/linux%E5%AE%89%E8%A3%85MySQL-%E7%94%A8glibc%E7%9A%84%E6%96%B9%E6%B3%95/"/>
     <id>http://example.com/2021/06/09/linux%E5%AE%89%E8%A3%85MySQL-%E7%94%A8glibc%E7%9A%84%E6%96%B9%E6%B3%95/</id>
     <published>2021-06-09T13:50:09.000Z</published>
-    <updated>2021-06-10T06:39:08.413Z</updated>
+    <updated>2021-07-11T10:47:47.455Z</updated>
     
     
-    <summary type="html">&lt;p&gt;注：本次安装参照B站up主“bili逍遥bili”，采用glibc包安装。&lt;br&gt;所需工具：Redhat Linux（虚拟机），MobaXterm（终端工具），MySQL-5.6.44-1.el7.x86_64.rpm-bundle.tar（官网下载）。&lt;br&gt;&lt;a href=&quot;https://cdn.mysql.com/archives/mysql-5.6/mysql-5.6.44-linux-glibc2.12-x86_64.tar.gz&quot;&gt;下载地址&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;开始安装&quot;&gt;&lt;a href=&quot;#开始安装&quot; class=&quot;headerlink&quot; title=&quot;开始安装&quot;&gt;&lt;/a&gt;开始安装&lt;/h2&gt;</summary>
+    <summary type="html">&lt;p&gt;注：本次安装参照B站up主“bili逍遥bili”，采用glibc包安装。&lt;br&gt;所需工具：Redhat Linux（虚拟机），MobaXterm（终端工具），MySQL-5.6.44-1.el7.x86_64.rpm-bundle.tar（官网下载）。&lt;br&gt;&lt;a href=&quot;https://cdn.mysql.com/archives/mysql-5.6/mysql-5.6.44-linux-glibc2.12-x86_64.tar.gz&quot;&gt;下载地址&lt;/a&gt;&lt;/p&gt;</summary>
     
     
     
