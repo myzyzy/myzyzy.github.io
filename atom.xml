@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-07-11T10:43:27.619Z</updated>
+  <updated>2021-07-25T15:34:19.418Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>频率与频段</title>
+    <link href="http://example.com/2021/07/25/%E9%A2%91%E7%8E%87%E4%B8%8E%E9%A2%91%E6%AE%B5/"/>
+    <id>http://example.com/2021/07/25/%E9%A2%91%E7%8E%87%E4%B8%8E%E9%A2%91%E6%AE%B5/</id>
+    <published>2021-07-25T15:31:04.000Z</published>
+    <updated>2021-07-25T15:34:19.418Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;频率与频段&quot;&gt;&lt;a href=&quot;#频率与频段&quot; class=&quot;headerlink&quot; title=&quot;频率与频段&quot;&gt;&lt;/a&gt;频率与频段&lt;/h1&gt;&lt;p&gt;&amp;ensp;&amp;ensp;电磁波可以搭载信息，不同波长的电磁波有不同的用途。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="网络优化" scheme="http://example.com/categories/%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96/"/>
+    
+    
+    <category term="无线通信" scheme="http://example.com/tags/%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>centos8网络基本管理</title>

@@ -158,4 +158,149 @@
         <tag>telnet</tag>
       </tags>
   </entry>
+  <entry>
+    <title>频率与频段</title>
+    <url>/2021/07/25/%E9%A2%91%E7%8E%87%E4%B8%8E%E9%A2%91%E6%AE%B5/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="频率与频段"><a href="#频率与频段" class="headerlink" title="频率与频段"></a>频率与频段</h1><p>&ensp;&ensp;电磁波可以搭载信息，不同波长的电磁波有不同的用途。</p>
+<span id="more"></span>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>符号</th>
+<th>频率</th>
+<th>波段</th>
+<th>波长</th>
+<th>主要用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>甚低频</td>
+<td>VLF</td>
+<td>3-30KHz</td>
+<td>超长波</td>
+<td>1000Km-100Km</td>
+<td>海洋潜艇通信；远距离通信；超远距离导航</td>
+</tr>
+<tr>
+<td>低频</td>
+<td>LF</td>
+<td>30-300KHz</td>
+<td>长波</td>
+<td>10Km-1Km</td>
+<td>越洋通信；中距离通信；地下岩层通信；远距离导航</td>
+</tr>
+<tr>
+<td>中频</td>
+<td>MF</td>
+<td>0.3-3MHz</td>
+<td>中波</td>
+<td>1Km-100m</td>
+<td>船用通信；业余无线电通信；移动通信；中距离通信</td>
+</tr>
+<tr>
+<td>高频</td>
+<td>HF</td>
+<td>3-30MHz</td>
+<td>短波</td>
+<td>100m-10m</td>
+<td>远距离短波通信；国际定点通信；移动通信</td>
+</tr>
+<tr>
+<td>甚高频</td>
+<td>VHF</td>
+<td>30-300MHz</td>
+<td>米波</td>
+<td>10m-1m</td>
+<td>电离层散射；流量余迹通信；人造电离层通信；对空间飞行体通信；移动通信</td>
+</tr>
+<tr>
+<td>超高频</td>
+<td>UHF</td>
+<td>0.3-3GHz</td>
+<td>分米波</td>
+<td>1m-0.1m</td>
+<td>小容量微波中继通信；对流层散射通信；中流量微波通信；移动通信</td>
+</tr>
+<tr>
+<td>特高频</td>
+<td>SHF</td>
+<td>3-30GHz</td>
+<td>厘米波</td>
+<td>10cm-1cm</td>
+<td>大容量微波中继通信；数字通信；卫星通信；国际海事卫星通信</td>
+</tr>
+<tr>
+<td>极高频</td>
+<td>EHF</td>
+<td>30-300GHz</td>
+<td>毫米波</td>
+<td>10mm-1mm</td>
+<td>再入大气层的通信；波导通信</td>
+</tr>
+</tbody></table>
+<ol>
+<li><strong>什么是频谱？</strong></li>
+</ol>
+<p>频谱是按照电磁波波长连续排列的电磁波族。（频率是连续的，不是离散的，相近的频率之间容易干扰，而且某种用途都会占用一个频段，所以我们不是一个频率一个频率分着用，而是一个范围一个范围的的分着用。）</p>
+<ol start="2">
+<li><strong>三网运营商5G频率资源</strong></li>
+</ol>
+<p>中国电信获得3400MHz-3500MHz共100MHz带宽的5G试验频率资源；中国联通获得3500MHz-3600MHz共100MHz带宽的5G试验频率资源；中国移动则将获得2515MHz-2675MHz、4800MHz-4900MHz频段的5G试验频率资源，其中2515-2575MHz、2635-2675MHz和4800-4900MHz频段为新增频段，2575-2635MHz频段为重耕中国移动现有的TD-LTE（4G）频段。广电也是移动通信运营商，它手上的700MHz，属于优质频段。</p>
+<p>频段号对应范围</p>
+<p><img src="https://gitee.com/myzyzy/material/raw/image/%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96/%E9%A2%91%E7%8E%87%E4%B8%8E%E9%A2%91%E6%AE%B5/%E9%A2%91%E6%AE%B5%E5%8F%B7.jpg" alt="频段号"></p>
+<ol start="3">
+<li>运营商使用的协议 </li>
+</ol>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><img src="https://gitee.com/myzyzy/material/raw/image/%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96/%E9%A2%91%E7%8E%87%E4%B8%8E%E9%A2%91%E6%AE%B5/%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8.png" style="zoom:50%;" /></th>
+<th><img src="https://gitee.com/myzyzy/material/raw/image/%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96/%E9%A2%91%E7%8E%87%E4%B8%8E%E9%A2%91%E6%AE%B5/%E4%B8%AD%E5%9B%BD%E8%81%94%E9%80%9A.png" alt="中国联通" style="zoom: 80%;" /></th>
+<th><img src="https://gitee.com/myzyzy/material/raw/image/%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96/%E9%A2%91%E7%8E%87%E4%B8%8E%E9%A2%91%E6%AE%B5/%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1.png" alt="中国电信"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2G</td>
+<td>GSM</td>
+<td>GSM</td>
+<td>CDMA 1X</td>
+</tr>
+<tr>
+<td>3G</td>
+<td>TD-SCDMA</td>
+<td>WWCDMA</td>
+<td>CDMA2000</td>
+</tr>
+<tr>
+<td>4G</td>
+<td>TDD-LTE <br />FDD-LTE</td>
+<td>FDD-LTE</td>
+<td>FDD-LTE</td>
+</tr>
+<tr>
+<td>5G</td>
+<td>NR</td>
+<td>NR</td>
+<td>NR</td>
+</tr>
+</tbody></table>
+<ol start="4">
+<li>中心频段与频点号</li>
+</ol>
+<p><img src="https://gitee.com/myzyzy/material/raw/image/%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96/%E9%A2%91%E7%8E%87%E4%B8%8E%E9%A2%91%E6%AE%B5/%E4%B8%AD%E5%BF%83%E9%A2%91%E7%82%B9.png" alt="中心频点"></p>
+<p>LTE网络特点：实际支持：1.4MHz、3MHz、5MHz、10MHz、15MHz、20MHz。</p>
+<p>频点的定义是固定频率带宽的一个编号，只是一个编号而已。</p>
+<p><strong>频点号计算公式</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">（中心频点-最小频点值）：（中心频率-最小频率值）= 10</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>网络优化</category>
+      </categories>
+      <tags>
+        <tag>无线通信</tag>
+      </tags>
+  </entry>
 </search>
