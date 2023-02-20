@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>基本数据库 |  Sharing life</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="https://material-image.pages.dev/gallery/football.svg" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <!-- mermaid -->
+      
+    <link rel="alternate" href="/atom.xml" title="Sharing life" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-基本数据库"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  基本数据库
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/02/20/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
+  <time datetime="2023-02-20T07:12:17.000Z" itemprop="datePublished">2023-02-20</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/sql%E8%AF%AD%E8%A8%80/">sql语言</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">3.9k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">17 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <hr>
+<hr>
+<h1 id="SQL语言的查询格式"><a href="#SQL语言的查询格式" class="headerlink" title="SQL语言的查询格式"></a>SQL语言的查询格式</h1><p>SELECT /<em>子句用于来制定查询的字段</em>/</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> [<span class="keyword">ALL</span><span class="operator">|</span><span class="keyword">DISTINCT</span>]  <span class="operator">&lt;</span><span class="operator">*</span><span class="operator">*</span>目标列<span class="operator">*</span><span class="operator">*</span>表达式<span class="operator">&gt;</span> [别名] [,<span class="operator">&lt;</span>目标列表达式<span class="operator">&gt;</span> [别名]]...</span><br><span class="line"></span><br><span class="line"><span class="keyword">FROM</span>  <span class="operator">&lt;</span><span class="operator">*</span><span class="operator">*</span>表名<span class="operator">*</span><span class="operator">*</span>或视图名<span class="operator">&gt;</span> [别名] [,<span class="operator">&lt;</span>表名或视图名<span class="operator">&gt;</span> [别名]]...</span><br><span class="line"></span><br><span class="line">[<span class="keyword">WHERE</span> <span class="operator">&lt;</span>条件表达式<span class="operator">&gt;</span>]</span><br><span class="line"></span><br><span class="line">[[<span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="operator">&lt;</span>列名<span class="operator">&gt;</span> [<span class="keyword">HAVING</span> <span class="operator">&lt;</span>条件表达式<span class="operator">&gt;</span>]]</span><br><span class="line"></span><br><span class="line">[[<span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="operator">&lt;</span>列名<span class="operator">&gt;</span> [<span class="keyword">ASC</span><span class="operator">|</span><span class="keyword">DESC</span>]];</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>目标列表达式可选的格式</p>
+<ol>
+<li>“* ”/<em>通配符，表示查询全部</em>/</li>
+<li>&lt;表名&gt;.*   /*<em>后可以跟具体列名</em>/</li>
+<li>CONUT （[ALL|DISTINCT] * ）</li>
+<li>&lt;属性列名表达式&gt;  /<em>可以是聚集函数，常量的任意算数计算</em>（加减乘除）/</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>COUNT(*)</td>
+<td>统计元组个数</td>
+</tr>
+<tr>
+<td>COUNT([ALL|DISTINCT] &lt;列名&gt;)</td>
+<td>统计一列中值的个数</td>
+</tr>
+<tr>
+<td>AVG([ALL|DISTINCT] &lt;列名&gt;)</td>
+<td>计算一列值的平均值</td>
+</tr>
+<tr>
+<td>MAX([ALL|DISTINCT] &lt;列名&gt;)</td>
+<td>求一列值的最大值</td>
+</tr>
+<tr>
+<td>MIN() ([ALL|DISTINCT] &lt;列名&gt;)</td>
+<td>求一列值的最小值</td>
+</tr>
+<tr>
+<td>SUM([ALL|DISTINCT] &lt;列名&gt;)</td>
+<td>求一列值的总和</td>
+</tr>
+</tbody></table>
+<p>WHERE子句的条件表达式可选格式</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>比较运算符</td>
+<td>=、&gt;、&lt;、&gt;=、&lt;=、&lt;&gt;</td>
+<td>比较两个表达式</td>
+</tr>
+<tr>
+<td>逻辑运算符</td>
+<td>AND、OR、NOT</td>
+<td>组合两个表达式的运算结果或取反</td>
+</tr>
+<tr>
+<td>范围运算符</td>
+<td>[NOT] BETWEEN AND</td>
+<td>搜索值是否在范围内</td>
+</tr>
+<tr>
+<td>列表运算符</td>
+<td>IN、NOT IN</td>
+<td>查询值是否属于列表值之一</td>
+</tr>
+<tr>
+<td>字符匹配符</td>
+<td>LIKE、NOT LIKE</td>
+<td>字符串是否匹配</td>
+</tr>
+<tr>
+<td>未知值</td>
+<td>IS NULL、IS NOT NULL</td>
+<td>查询值是否为NULL</td>
+</tr>
+</tbody></table>
+<p><img src="https://material-image.pages.dev/blog-image/%E6%95%B0%E6%8D%AE%E5%BA%93/sql.png"></p>
+<p>union用法</p>
+<p>如果我们需要将两个select语句的结果作为一个整体显示出来，我们就需要用到union或者union all关键字。union(或称为联合)的作用是将多个结果合并在一起显示出来。</p>
+<p>union和union all的区别是,union会自动压缩多个结果集合中的重复结果，而union all则将所有的结果全部显示出来，不管是不是重复。<br>Union：对两个结果集进行并集操作，不包括重复行，同时进行默认规则的排序；</p>
+<p>Union All：对两个结果集进行并集操作，包括重复行，不进行排序；</p>
+<p>Intersect：对两个结果集进行交集操作，不包括重复行，同时进行默认规则的排序；</p>
+<p>Minus：对两个结果集进行差操作，不包括重复行，同时进行默认规则的排序。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> J;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----+----------+------+</span></span><br><span class="line"><span class="operator">|</span> JNO <span class="operator">|</span> JNAME    <span class="operator">|</span> CITY <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+----------+------+</span></span><br><span class="line"><span class="operator">|</span> J1  <span class="operator">|</span> 三建     <span class="operator">|</span> 北京 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J2  <span class="operator">|</span> 一汽     <span class="operator">|</span> 长春 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J3  <span class="operator">|</span> 弹簧厂   <span class="operator">|</span> 天津 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J4  <span class="operator">|</span> 造船厂   <span class="operator">|</span> 天津 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J5  <span class="operator">|</span> 机车厂   <span class="operator">|</span> 唐山 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J6  <span class="operator">|</span> 无线电厂 <span class="operator">|</span> 常州 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J7  <span class="operator">|</span> 半导体厂 <span class="operator">|</span> 南京 <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+----------+------+</span></span><br><span class="line"><span class="number">7</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> spj;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----+-----+-----+------+</span></span><br><span class="line"><span class="operator">|</span> SNO <span class="operator">|</span> PNO <span class="operator">|</span> JNO <span class="operator">|</span> QTY  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+-----+-----+------+</span></span><br><span class="line"><span class="operator">|</span> S1  <span class="operator">|</span> P1  <span class="operator">|</span> J1  <span class="operator">|</span>  <span class="number">200</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S1  <span class="operator">|</span> P1  <span class="operator">|</span> J3  <span class="operator">|</span>  <span class="number">100</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S1  <span class="operator">|</span> P1  <span class="operator">|</span> J4  <span class="operator">|</span>  <span class="number">700</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S1  <span class="operator">|</span> P2  <span class="operator">|</span> J2  <span class="operator">|</span>  <span class="number">100</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S3  <span class="operator">|</span> P1  <span class="operator">|</span> J1  <span class="operator">|</span>  <span class="number">200</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S3  <span class="operator">|</span> P3  <span class="operator">|</span> J1  <span class="operator">|</span>  <span class="number">200</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S3  <span class="operator">|</span> P4  <span class="operator">|</span> J6  <span class="operator">|</span>  <span class="number">200</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S3  <span class="operator">|</span> P6  <span class="operator">|</span> J4  <span class="operator">|</span>  <span class="number">500</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S4  <span class="operator">|</span> P5  <span class="operator">|</span> J1  <span class="operator">|</span>  <span class="number">100</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S4  <span class="operator">|</span> P6  <span class="operator">|</span> J3  <span class="operator">|</span>  <span class="number">300</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S4  <span class="operator">|</span> P6  <span class="operator">|</span> J4  <span class="operator">|</span>  <span class="number">200</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S5  <span class="operator">|</span> P2  <span class="operator">|</span> J4  <span class="operator">|</span>  <span class="number">100</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S5  <span class="operator">|</span> P3  <span class="operator">|</span> J1  <span class="operator">|</span>  <span class="number">200</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S5  <span class="operator">|</span> P6  <span class="operator">|</span> J2  <span class="operator">|</span>  <span class="number">200</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+-----+-----+------+</span></span><br><span class="line"><span class="number">14</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> JNO <span class="keyword">from</span> spj</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">union</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">select</span> JNO <span class="keyword">from</span> J;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> JNO <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> J1  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J3  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J4  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J2  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J6  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J5  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J7  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="number">7</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<p>例题</p>
+<p><strong>&amp;nbsp</strong>设有一个SPJ数据库，包括S、P、J及SPJ4个关系模式：</p>
+<p>S（SNO，SNAME，STATUS，CITY）；</p>
+<p>P（PNO，PNAME，COLOR，WEIGHT）；</p>
+<p>J（JNO，JNAME，CITY）；SPJ（SNO，PNO，JNO，QTY）。</p>
+<p>&amp;nbsp供应商表S由供应商代码（SNO）、供应商姓名（SNAME）、供应商状态（STATUS）、供应商所在城市（CITY）组成。</p>
+<p>零件表P由零件代码（PNO）、零件名（PNAME）、颜色（COLOR）、重量（WEIGHT）组成。</p>
+<p>工程项目表J由工程项目代码（JNO）、工程项目名（JNAME）、工程项目所在城市（CITY）组成。供应情况表SPJ由供应商代码（SNO）、零件代码（PNO）、工程项目代码（JNO）、供应数量（QTY）组成，表示某供应商供应某种零件给某工程项目的数量为QTY。</p>
+<p>创建数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">（<span class="number">1</span>）建立S表：S（SNO，SNAME，STATUS，CITY）；</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">create</span> <span class="keyword">table</span> S</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> (SNO <span class="type">char</span>(<span class="number">2</span>) <span class="keyword">unique</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> SNAMA <span class="type">char</span>(<span class="number">6</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> STATUS <span class="type">char</span>(<span class="number">2</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> CITY <span class="type">char</span>(<span class="number">4</span>));</span><br><span class="line">S表插入数据：</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> S <span class="keyword">VALUES</span></span><br><span class="line">(<span class="string">&#x27;S1&#x27;</span>,<span class="string">&#x27;精益&#x27;</span>,<span class="string">&#x27;20&#x27;</span>,<span class="string">&#x27;天津&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;S2&#x27;</span>,<span class="string">&#x27;盛锡&#x27;</span>,<span class="string">&#x27;10&#x27;</span>,<span class="string">&#x27;北京&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;S3&#x27;</span>,<span class="string">&#x27;东方红&#x27;</span>,<span class="string">&#x27;30&#x27;</span>,<span class="string">&#x27;北京&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;S4&#x27;</span>,<span class="string">&#x27;丰泰盛&#x27;</span>,<span class="string">&#x27;20&#x27;</span>,<span class="string">&#x27;天津&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;S5&#x27;</span>,<span class="string">&#x27;为民&#x27;</span>,<span class="string">&#x27;30&#x27;</span>,<span class="string">&#x27;上海&#x27;</span>);</span><br><span class="line">（<span class="number">2</span>）.建立P表</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">create</span> <span class="keyword">table</span> P(</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> PNO <span class="type">char</span>(<span class="number">2</span>) <span class="keyword">UNIQUE</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> PNAME <span class="type">char</span>(<span class="number">8</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> COLOR <span class="type">char</span>(<span class="number">2</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> WEIGHT <span class="type">int</span>);</span><br><span class="line">P表插入数据</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> P <span class="keyword">VALUES</span></span><br><span class="line">(<span class="string">&#x27;P1&#x27;</span>,<span class="string">&#x27;螺母&#x27;</span>,<span class="string">&#x27;红&#x27;</span>,<span class="number">12</span>),</span><br><span class="line">(<span class="string">&#x27;P2&#x27;</span>,<span class="string">&#x27;螺栓&#x27;</span>,<span class="string">&#x27;绿&#x27;</span>,<span class="number">17</span>),</span><br><span class="line">(<span class="string">&#x27;P3&#x27;</span>,<span class="string">&#x27;螺丝刀&#x27;</span>,<span class="string">&#x27;蓝&#x27;</span>,<span class="number">14</span>),</span><br><span class="line">(<span class="string">&#x27;P4&#x27;</span>,<span class="string">&#x27;螺丝刀&#x27;</span>,<span class="string">&#x27;红&#x27;</span>,<span class="number">14</span>),</span><br><span class="line">(<span class="string">&#x27;P5&#x27;</span>,<span class="string">&#x27;凸轮&#x27;</span>,<span class="string">&#x27;蓝&#x27;</span>,<span class="number">40</span>),</span><br><span class="line">(<span class="string">&#x27;P6&#x27;</span>,<span class="string">&#x27;齿轮&#x27;</span>,<span class="string">&#x27;红&#x27;</span>,<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">（<span class="number">3</span>）.建立J表</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">table</span> J(</span><br><span class="line">JNO <span class="type">char</span>(<span class="number">2</span>) <span class="keyword">UNIQUE</span>,</span><br><span class="line">JNAME <span class="type">char</span>(<span class="number">8</span>),</span><br><span class="line">CITY <span class="type">char</span>(<span class="number">8</span>));</span><br><span class="line">J表查入数据</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> J <span class="keyword">VALUES</span></span><br><span class="line">(<span class="string">&#x27;J1&#x27;</span>,<span class="string">&#x27;三建&#x27;</span>,<span class="string">&#x27;北京&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;J2&#x27;</span>,<span class="string">&#x27;一汽&#x27;</span>,<span class="string">&#x27;长春&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;J3&#x27;</span>,<span class="string">&#x27;弹簧厂&#x27;</span>,<span class="string">&#x27;天津&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;J4&#x27;</span>,<span class="string">&#x27;造船厂&#x27;</span>,<span class="string">&#x27;天津&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;J5&#x27;</span>,<span class="string">&#x27;机车厂&#x27;</span>,<span class="string">&#x27;唐山&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;J6&#x27;</span>,<span class="string">&#x27;无线电厂&#x27;</span>,<span class="string">&#x27;常州&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;J7&#x27;</span>,<span class="string">&#x27;半导体厂&#x27;</span>,<span class="string">&#x27;南京&#x27;</span>);</span><br><span class="line"></span><br><span class="line">（<span class="number">4</span>）.创建SPJ表	<span class="operator">/</span><span class="comment">/*并创建外键约束*/</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> SPJ(</span><br><span class="line">SNO <span class="type">char</span>(<span class="number">2</span>),</span><br><span class="line">PNO <span class="type">char</span>(<span class="number">2</span>),</span><br><span class="line">JNO <span class="type">char</span>(<span class="number">2</span>),</span><br><span class="line">QTY <span class="type">int</span>,</span><br><span class="line"><span class="keyword">PRIMARY</span> KEY(SNO,PNO,JNO),</span><br><span class="line"><span class="keyword">FOREIGN</span> KEY(SNO) <span class="keyword">REFERENCES</span> S(SNO),</span><br><span class="line"><span class="keyword">FOREIGN</span> KEY(PNO) <span class="keyword">REFERENCES</span> P(PNO),</span><br><span class="line"><span class="keyword">FOREIGN</span> KEY(JNO) <span class="keyword">REFERENCES</span> J(JNO)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">SPJ表插入数据</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SPJ <span class="keyword">VALUES</span></span><br><span class="line">(<span class="string">&#x27;S1&#x27;</span>,<span class="string">&#x27;P1&#x27;</span>,<span class="string">&#x27;J1&#x27;</span>,<span class="number">200</span>),</span><br><span class="line">(<span class="string">&#x27;S1&#x27;</span>,<span class="string">&#x27;P1&#x27;</span>,<span class="string">&#x27;J3&#x27;</span>,<span class="number">100</span>),</span><br><span class="line">(<span class="string">&#x27;S1&#x27;</span>,<span class="string">&#x27;P1&#x27;</span>,<span class="string">&#x27;J4&#x27;</span>,<span class="number">700</span>),</span><br><span class="line">(<span class="string">&#x27;S1&#x27;</span>,<span class="string">&#x27;P2&#x27;</span>,<span class="string">&#x27;J2&#x27;</span>,<span class="number">100</span>),</span><br><span class="line">(<span class="string">&#x27;S2&#x27;</span>,<span class="string">&#x27;P3&#x27;</span>,<span class="string">&#x27;J1&#x27;</span>,<span class="number">400</span>),</span><br><span class="line">(<span class="string">&#x27;S2&#x27;</span>,<span class="string">&#x27;P3&#x27;</span>,<span class="string">&#x27;J2&#x27;</span>,<span class="number">200</span>),</span><br><span class="line">(<span class="string">&#x27;S2&#x27;</span>,<span class="string">&#x27;P3&#x27;</span>,<span class="string">&#x27;J4&#x27;</span>,<span class="number">500</span>),</span><br><span class="line">(<span class="string">&#x27;S2&#x27;</span>,<span class="string">&#x27;P3&#x27;</span>,<span class="string">&#x27;J5&#x27;</span>,<span class="number">400</span>),</span><br><span class="line">(<span class="string">&#x27;S2&#x27;</span>,<span class="string">&#x27;P5&#x27;</span>,<span class="string">&#x27;J1&#x27;</span>,<span class="number">400</span>),</span><br><span class="line">(<span class="string">&#x27;S2&#x27;</span>,<span class="string">&#x27;P5&#x27;</span>,<span class="string">&#x27;J2&#x27;</span>,<span class="number">100</span>),</span><br><span class="line">(<span class="string">&#x27;S3&#x27;</span>,<span class="string">&#x27;P1&#x27;</span>,<span class="string">&#x27;J1&#x27;</span>,<span class="number">200</span>),</span><br><span class="line">(<span class="string">&#x27;S3&#x27;</span>,<span class="string">&#x27;P3&#x27;</span>,<span class="string">&#x27;J1&#x27;</span>,<span class="number">200</span>),</span><br><span class="line">(<span class="string">&#x27;S4&#x27;</span>,<span class="string">&#x27;P5&#x27;</span>,<span class="string">&#x27;J1&#x27;</span>,<span class="number">100</span>),</span><br><span class="line">(<span class="string">&#x27;S4&#x27;</span>,<span class="string">&#x27;P6&#x27;</span>,<span class="string">&#x27;J3&#x27;</span>,<span class="number">300</span>),</span><br><span class="line">(<span class="string">&#x27;S4&#x27;</span>,<span class="string">&#x27;P6&#x27;</span>,<span class="string">&#x27;J4&#x27;</span>,<span class="number">200</span>),</span><br><span class="line">(<span class="string">&#x27;S5&#x27;</span>,<span class="string">&#x27;P2&#x27;</span>,<span class="string">&#x27;J4&#x27;</span>,<span class="number">100</span>),</span><br><span class="line">(<span class="string">&#x27;S5&#x27;</span>,<span class="string">&#x27;P3&#x27;</span>,<span class="string">&#x27;J1&#x27;</span>,<span class="number">200</span>),</span><br><span class="line">(<span class="string">&#x27;S5&#x27;</span>,<span class="string">&#x27;P6&#x27;</span>,<span class="string">&#x27;J2&#x27;</span>,<span class="number">200</span>),</span><br><span class="line">(<span class="string">&#x27;S5&#x27;</span>,<span class="string">&#x27;P6&#x27;</span>,<span class="string">&#x27;J4&#x27;</span>,<span class="number">500</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4.1</span>供应工程J1零件的供应商号码SNO对应的<span class="keyword">SQL</span>语句为</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> SNO</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> spj</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> JNO<span class="operator">=</span><span class="string">&#x27;J1&#x27;</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> SNO <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> S1  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S2  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S2  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S3  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S3  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S4  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S5  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="number">4.2</span>供应工程J1零件的供应商号码SNO对应的<span class="keyword">SQL</span>语句为：</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> SNO</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> SPJ</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> JNO<span class="operator">=</span><span class="string">&#x27;J1&#x27;</span> <span class="keyword">and</span> PNO<span class="operator">=</span><span class="string">&#x27;P1&#x27;</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> SNO <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> S1  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S3  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="number">4.3</span>.供应工程J1零件为红色的供应商号码SNO对应的<span class="keyword">SQL</span>语句为：</span><br><span class="line">解法发一</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> SNO</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> SPJ</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> PNO <span class="keyword">in</span>(<span class="keyword">select</span> PNO <span class="keyword">from</span> P <span class="keyword">where</span> COLOR<span class="operator">=</span><span class="string">&#x27;红&#x27;</span>) <span class="keyword">and</span> JNO<span class="operator">=</span><span class="string">&#x27;J1&#x27;</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> SNO <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> S1  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S3  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line">解法二：</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> SNO <span class="keyword">from</span> P,SPJ</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> P.PNO<span class="operator">=</span>SPJ.PNO <span class="keyword">and</span> color<span class="operator">=</span><span class="string">&#x27;红&#x27;</span> <span class="keyword">and</span> JNO<span class="operator">=</span><span class="string">&#x27;J1&#x27;</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> SNO <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> S1  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> S3  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="number">4.4</span>.没有使用天津供应商生产的红色零件的工程号JNO对应的<span class="keyword">SQL</span>语句为：</span><br><span class="line">法一：连表</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="keyword">DISTINCT</span> JNO <span class="keyword">from</span> SPJ,S,P</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> SPJ.SNO<span class="operator">=</span>S.SNO <span class="keyword">and</span> SPJ.PNO<span class="operator">=</span>P.PNO <span class="keyword">and</span> CITY<span class="operator">!=</span><span class="string">&#x27;天津&#x27;</span> <span class="keyword">and</span> COLOR<span class="operator">!=</span><span class="string">&#x27;红&#x27;</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> JNO <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> J1  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J2  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J4  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J5  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line">法二：嵌套</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="keyword">DISTINCT</span> JNO <span class="keyword">from</span> SPJ</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> (SNO <span class="keyword">not</span> <span class="keyword">in</span> (<span class="keyword">select</span> SNO <span class="keyword">from</span> S <span class="keyword">where</span> CITY<span class="operator">=</span><span class="string">&#x27;天津&#x27;</span>)) <span class="keyword">and</span> (PNO <span class="keyword">not</span> <span class="keyword">in</span> (<span class="keyword">select</span> PNO <span class="keyword">from</span> P <span class="keyword">where</span> COLOR<span class="operator">=</span><span class="string">&#x27;红&#x27;</span>));</span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> JNO <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> J4  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J1  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J2  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J5  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="number">4.5</span>.求至少用了供应商S1所供应的全部零件的工程号JNO</span><br><span class="line">解：</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> JNO <span class="keyword">from</span> SPJ</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> PNO<span class="operator">=</span><span class="string">&#x27;P1&#x27;</span> <span class="keyword">and</span> jno <span class="keyword">in</span> (<span class="keyword">select</span> JNO <span class="keyword">from</span> spj <span class="keyword">where</span> pno<span class="operator">=</span><span class="string">&#x27;P2&#x27;</span>);</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> JNO <span class="keyword">from</span> SPJ</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> PNO<span class="operator">=</span><span class="string">&#x27;P1&#x27;</span> <span class="keyword">and</span> jno <span class="keyword">in</span> (<span class="keyword">select</span> JNO <span class="keyword">from</span> spj <span class="keyword">where</span> pno<span class="operator">=</span><span class="string">&#x27;P2&#x27;</span>);</span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> JNO <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> J4  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br></pre></td></tr></table></figure>
+
+<p>5.针对习题4中的4个表试用SQL完成以下各项操作</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line">（<span class="number">1</span>）找出所有供应商的姓名和所在城市：</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> SNAME,CITY <span class="keyword">from</span> S;</span><br><span class="line"><span class="operator">+</span><span class="comment">--------+------+</span></span><br><span class="line"><span class="operator">|</span> SNAME  <span class="operator">|</span> CITY <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+------+</span></span><br><span class="line"><span class="operator">|</span> 精益   <span class="operator">|</span> 天津 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 盛锡   <span class="operator">|</span> 北京 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 东方红 <span class="operator">|</span> 北京 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 丰泰盛 <span class="operator">|</span> 天津 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 为民   <span class="operator">|</span> 上海 <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+------+</span></span><br><span class="line">（<span class="number">2</span>）找出所有零件的名称、颜色、重量；</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SELECT</span> PNAME,COLOR,WEIGHT <span class="keyword">FROM</span> P;</span><br><span class="line"><span class="operator">+</span><span class="comment">--------+-------+--------+</span></span><br><span class="line"><span class="operator">|</span> PNAME  <span class="operator">|</span> COLOR <span class="operator">|</span> WEIGHT <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+-------+--------+</span></span><br><span class="line"><span class="operator">|</span> 螺母   <span class="operator">|</span> 红    <span class="operator">|</span>     <span class="number">12</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 螺栓   <span class="operator">|</span> 绿    <span class="operator">|</span>     <span class="number">17</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 螺丝刀 <span class="operator">|</span> 蓝    <span class="operator">|</span>     <span class="number">14</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 螺丝刀 <span class="operator">|</span> 红    <span class="operator">|</span>     <span class="number">14</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 凸轮   <span class="operator">|</span> 蓝    <span class="operator">|</span>     <span class="number">40</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 齿轮   <span class="operator">|</span> 红    <span class="operator">|</span>     <span class="number">30</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+-------+--------+</span></span><br><span class="line">（<span class="number">3</span>）找出使用供应商S1所供应零件的工程号码；</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> JNO <span class="keyword">from</span> SPJ</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> SNO<span class="operator">=</span><span class="string">&#x27;S1&#x27;</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> JNO <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> J1  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J3  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J4  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J2  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line">（<span class="number">4</span>）找出工程项目J2使用的各种零件的名称及其数量；</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> P.PNAME,SPJ.QTY <span class="keyword">from</span> SPJ,P</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> P.PNO<span class="operator">=</span>SPJ.PNO <span class="keyword">and</span> JNO<span class="operator">=</span><span class="string">&#x27;J2&#x27;</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">--------+------+</span></span><br><span class="line"><span class="operator">|</span> PNAME  <span class="operator">|</span> QTY  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+------+</span></span><br><span class="line"><span class="operator">|</span> 螺栓   <span class="operator">|</span>  <span class="number">100</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 螺丝刀 <span class="operator">|</span>  <span class="number">200</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 凸轮   <span class="operator">|</span>  <span class="number">100</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 齿轮   <span class="operator">|</span>  <span class="number">200</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+------+</span></span><br><span class="line">（<span class="number">5</span>）找出上海厂商供应的所有零件号码；</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> PNO <span class="keyword">from</span> SPJ</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> SNO<span class="operator">=</span>( <span class="keyword">select</span> SNO <span class="keyword">from</span> S <span class="keyword">where</span> CITY<span class="operator">=</span><span class="string">&#x27;上海&#x27;</span>);</span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> PNO <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> P2  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> P3  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> P6  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> P6  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line">（<span class="number">6</span>）找出使用上海产的零件的工程名称；</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> JNAME <span class="keyword">from</span> J</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> JNO <span class="keyword">in</span> (<span class="keyword">select</span> JNO <span class="keyword">from</span> SPJ <span class="keyword">where</span> SNO<span class="operator">=</span>( <span class="keyword">select</span> SNO <span class="keyword">from</span> S <span class="keyword">where</span> CITY<span class="operator">=</span><span class="string">&#x27;上海&#x27;</span>));</span><br><span class="line"><span class="operator">+</span><span class="comment">--------+</span></span><br><span class="line"><span class="operator">|</span> JNAME  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+</span></span><br><span class="line"><span class="operator">|</span> 三建   <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 一汽   <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 造船厂 <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+</span></span><br><span class="line">（<span class="number">7</span>）找出没有使用天津产的零件的工程号码；</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="keyword">DISTINCT</span> JNO <span class="keyword">from</span> SPJ</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> SNO <span class="keyword">in</span> (<span class="keyword">select</span> SNO <span class="keyword">from</span> S <span class="keyword">where</span> CITY<span class="operator">!=</span><span class="string">&#x27;天津&#x27;</span>);</span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> JNO <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line"><span class="operator">|</span> J1  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J2  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J4  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> J5  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+</span></span><br><span class="line">（<span class="number">8</span>）把全部红色零件的颜色改成蓝色；</span><br><span class="line">mysql<span class="operator">&gt;</span> update P</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">set</span> COLOR<span class="operator">=</span><span class="string">&#x27;蓝&#x27;</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> COLOR<span class="operator">=</span><span class="string">&#x27;红&#x27;</span>;</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> P;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----+--------+-------+--------+</span></span><br><span class="line"><span class="operator">|</span> PNO <span class="operator">|</span> PNAME  <span class="operator">|</span> COLOR <span class="operator">|</span> WEIGHT <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+--------+-------+--------+</span></span><br><span class="line"><span class="operator">|</span> P1  <span class="operator">|</span> 螺母   <span class="operator">|</span> 蓝    <span class="operator">|</span>     <span class="number">12</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> P2  <span class="operator">|</span> 螺栓   <span class="operator">|</span> 绿    <span class="operator">|</span>     <span class="number">17</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> P3  <span class="operator">|</span> 螺丝刀 <span class="operator">|</span> 蓝    <span class="operator">|</span>     <span class="number">14</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> P4  <span class="operator">|</span> 螺丝刀 <span class="operator">|</span> 蓝    <span class="operator">|</span>     <span class="number">14</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> P5  <span class="operator">|</span> 凸轮   <span class="operator">|</span> 蓝    <span class="operator">|</span>     <span class="number">40</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> P6  <span class="operator">|</span> 齿轮   <span class="operator">|</span> 蓝    <span class="operator">|</span>     <span class="number">30</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+--------+-------+--------+</span></span><br><span class="line">（<span class="number">9</span>）由S5供给J4的零件P6改为由S3供应，请作必要的修改；</span><br><span class="line">mysql<span class="operator">&gt;</span> update SPJ</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">set</span> SNO<span class="operator">=</span><span class="string">&#x27;S3&#x27;</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> SNO<span class="operator">=</span><span class="string">&#x27;S5&#x27;</span> <span class="keyword">and</span> JNO<span class="operator">=</span><span class="string">&#x27;J4&#x27;</span> <span class="keyword">and</span> PNO<span class="operator">=</span><span class="string">&#x27;P6&#x27;</span>;</span><br><span class="line">（<span class="number">10</span>）从供应商关系中删除S2的记录，并从供应情况关系中删除相应的记录；</span><br><span class="line">因创建SPJ表时添加了外键约束（SNO），参照S表中的SNO字段，所以删除时应该先取消外键约束或者先删除SPJ表中的字段</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">DELETE</span> <span class="keyword">FROM</span> SPJ</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> SNO<span class="operator">=</span><span class="string">&#x27;S2&#x27;</span>;	<span class="comment">/*先删除SNO表中的数据*/</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">DELETE</span> <span class="keyword">FROM</span> S</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> SNO<span class="operator">=</span><span class="string">&#x27;s2&#x27;</span>;</span><br><span class="line">（<span class="number">11</span>）请将（S2，J6，P4，<span class="number">200</span>）插入供应情况关系。</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">insert</span> <span class="keyword">into</span> SPJ(SNO,JNO,PNO,QTY) <span class="keyword">values</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> (<span class="string">&#x27;S3&#x27;</span>,<span class="string">&#x27;J6&#x27;</span>,<span class="string">&#x27;P4&#x27;</span>,<span class="number">200</span>);</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> SPJ</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> SNO<span class="operator">=</span><span class="string">&#x27;S3&#x27;</span> <span class="keyword">and</span> JNO<span class="operator">=</span><span class="string">&#x27;J6&#x27;</span> <span class="keyword">and</span> PNO<span class="operator">=</span><span class="string">&#x27;P4&#x27;</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----+-----+-----+------+</span></span><br><span class="line"><span class="operator">|</span> SNO <span class="operator">|</span> PNO <span class="operator">|</span> JNO <span class="operator">|</span> QTY  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+-----+-----+------+</span></span><br><span class="line"><span class="operator">|</span> S3  <span class="operator">|</span> P4  <span class="operator">|</span> J6  <span class="operator">|</span>  <span class="number">200</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+-----+-----+------+</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>6.什么是基本表？什么是视图？两者的区别和联系是什么？</strong><br>（1）基本表是本身独立存在的表，在SQL中一个关系就对应一个表。一个(或多个)基本表对应一个存储文件，一个表可以带若干索引，索引也存放在存储文件中。<br>（2）视图是从一个或几个基本表导出的表。它本身不独立存储在数据库中，即数据库中只存放视图的定义而不存放视图对应的数据。这些数据仍存放在导出视图的基本表中，因此视图是一个虚表。<br>（3）基本表与视图的区别和联系：<br>①区别：视图本身不独立存储在数据库中，是一个虚表。即数据库中只存放视图的定义而不存放视图对应的数据，这些数据仍存放在导出视图的基本表中。<br>②联系：视图在概念上与基本表等同，用户可以如同基本表那样使用视图，可以在视图上再定义视图。所以基本表中的数据发生变化，从视图中查询出的数据也就随之发生改变。</p>
+<p><strong>7.视图有以下五个优点：</strong><br>1）视图能够简化用户的操作：视图机制使用户可以将注意力集中在所关心的数据上，如果这些数据不是直接来自基本表，则可以通过定义视图，使数据库看起来结构简单、清晰，并且可以简化用户的数据查询操作；<br>（2）视图使用户能以多种角度看待同一数据：视图机制能使不同的用户以不同的方式看待同一数据，当许多不同种类的用户共享一个数据库时，这种灵活性是非常重要的；<br>（3）视图对重构数据库提供了一定程度的逻辑独立性：数据的逻辑独立性是指当数据库重构时，用户的应用程序不会受影响；<br>（4）视图能够对机密数据提供安全保护：有了视图机制，就可以在设计数据库应用系统时，对不同的用户定义不同的视图，使机密数据不出现在不应看到这些数据的用户视图上。这样视图机制就自动提供了对机密数据的安全保护功能。<br>（5）使用视图可以更清晰的表达查询</p>
+<p>9.请为三建工程项目建立一个供应情况的视图，包括供应商代码（SNO）、零件代码（PNO）、供应数量（QTY）。针对该视图完成下列查询：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">（<span class="number">1</span>）找出三建工程项目使用的各种零件代码及其数量；</span><br><span class="line">为三建创建视图</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">create</span> <span class="keyword">view</span> V_SPJ <span class="keyword">AS</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">select</span> SNO,PNO,QTY</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> SPJ</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> JNO<span class="operator">=</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> ( <span class="keyword">select</span> JNO <span class="keyword">from</span> j <span class="keyword">where</span> Jname<span class="operator">=</span><span class="string">&#x27;三建&#x27;</span>);</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> PNO,QTY</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">from</span> V_SPJ;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----+------+</span></span><br><span class="line"><span class="operator">|</span> PNO <span class="operator">|</span> QTY  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+------+</span></span><br><span class="line"><span class="operator">|</span> P1  <span class="operator">|</span>  <span class="number">200</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> P1  <span class="operator">|</span>  <span class="number">200</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> P3  <span class="operator">|</span>  <span class="number">200</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> P5  <span class="operator">|</span>  <span class="number">100</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> P3  <span class="operator">|</span>  <span class="number">200</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+------+</span></span><br><span class="line">（<span class="number">2</span>）找出供应商S1的供应情况。</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> V_SPJ</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> SNO<span class="operator">=</span><span class="string">&#x27;S1&#x27;</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----+-----+------+</span></span><br><span class="line"><span class="operator">|</span> SNO <span class="operator">|</span> PNO <span class="operator">|</span> QTY  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+-----+------+</span></span><br><span class="line"><span class="operator">|</span> S1  <span class="operator">|</span> P1  <span class="operator">|</span>  <span class="number">200</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+-----+------+</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>查看用户    </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">user</span>,host <span class="keyword">from</span> mysql.user;</span><br><span class="line">查看单个用户所有情况：</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> mysql.user <span class="keyword">WHERE</span> <span class="keyword">user</span><span class="operator">=</span><span class="string">&#x27;root&#x27;</span>\G</span><br><span class="line">查看当前登录用户</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="keyword">user</span>();</span><br><span class="line"><span class="operator">+</span><span class="comment">----------------+</span></span><br><span class="line"><span class="operator">|</span> <span class="keyword">user</span>()         <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------------+</span></span><br><span class="line"><span class="operator">|</span> root<span class="variable">@localhost</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------------+</span></span><br></pre></td></tr></table></figure></li>
+<li><p>mysql权限介绍</p>
+<ol>
+<li><p>全局——可以管理整个MySQL</p>
+</li>
+<li><p>库——可以管理指定的数据库</p>
+</li>
+<li><p>表——可以管理指定数据库的指定表</p>
+</li>
+<li><p>字段——可以管理指定数据库的指定表的指定字段</p>
+<p>权限存储在mysql库的<strong>user, db, tables_priv, columns_priv, procs_priv</strong>这几个系统表中，待MySQL实例启动后就加载到<strong>内存</strong>中</p>
+</li>
+</ol>
+<p>查看单个用户情况</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> mysql.user <span class="keyword">WHERE</span> <span class="keyword">user</span><span class="operator">=</span><span class="string">&#x27;root&#x27;</span>\G</span><br><span class="line">说明：</span><br><span class="line">在MySQL的<span class="keyword">sql</span>语句后加上\g，效果等同于加上定界符，一般默认的定界符是分号;</span><br><span class="line">在MySQL的<span class="keyword">sql</span>语句后加上\G，表示将查询结果进行按列打印，可以使每个字段打印到单独的行。即将查到的结构旋转<span class="number">90</span>度变成纵向；</span><br></pre></td></tr></table></figure></li>
+<li><p>创建用户</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;username&#x27;</span>@<span class="string">&#x27;host&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;password&#x27;</span>;</span><br><span class="line"></span><br><span class="line">username：你将创建的用户名</span><br><span class="line">host：指定该用户在哪个主机上可以登陆，如果是本地用户可用localhost，如果想让该用户可以从任意远程主机登陆，可以使用通配符<span class="operator">%</span></span><br><span class="line">password：该用户的登陆密码，密码可以为空，如果为空则该用户可以不需要密码登陆服务器</span><br><span class="line"></span><br><span class="line">例如</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;pig&#x27;</span>@<span class="string">&#x27;192.168.1.101_&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;123456&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>关系数据库系统中的存取权限</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">对象类型</th>
+<th>对象</th>
+<th>操作类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">数据库模式</td>
+<td>模式</td>
+<td>CREATE SCHEMA</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>基本表</td>
+<td>CREATE TABLE, ALTER TABLE</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>视图</td>
+<td>CREATE VIEW</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>索引</td>
+<td>CREATE INDEX</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>基本表和视图</td>
+<td>SELECT, INSERT,UPDATE,DELETE,REFERENCES,ALL</td>
+</tr>
+<tr>
+<td align="left">数据</td>
+<td>属性列</td>
+<td>SELECT,INSERT,UPDATE,REFERENCES, ALL PRIVILEGES</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>授权语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span>语句的一般格式为</span><br><span class="line"><span class="keyword">GRANT</span><span class="operator">&lt;</span>权限<span class="operator">&gt;</span>[，权限]…</span><br><span class="line"><span class="keyword">ON</span><span class="operator">&lt;</span>对象类型<span class="operator">&gt;</span><span class="operator">&lt;</span>对象名<span class="operator">&gt;</span>[<span class="operator">&lt;</span>对象类型<span class="operator">&gt;</span><span class="operator">&lt;</span>对象名<span class="operator">&gt;</span>]…</span><br><span class="line"><span class="keyword">TO</span><span class="operator">&lt;</span>用户<span class="operator">&gt;</span>[用户<span class="operator">&gt;</span>]…</span><br><span class="line">[<span class="keyword">WITH</span> <span class="keyword">GRANT</span> OPTION];</span><br><span class="line">如果指定了<span class="keyword">WITH</span> <span class="keyword">GRANT</span> OPTION子句，则获得某种权限的用户还可以把这种权限再授予其他的用户。如果没有指定 <span class="keyword">WITH</span> <span class="keyword">GRANT</span> OPTION子句，则获得某种权限的用户只能使用该权限，不能传播该权限。</span><br><span class="line"></span><br><span class="line">例如</span><br><span class="line">把对Student查询的权限授予U1</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">grant</span> <span class="keyword">select</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">on</span> <span class="keyword">table</span> Student</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">to</span> U1;</span><br></pre></td></tr></table></figure></li>
+<li><p>撤销用户权限</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span><span class="operator">&lt;</span>权限<span class="operator">&gt;</span>[<span class="operator">&lt;</span>权限<span class="operator">&gt;</span>]…</span><br><span class="line"><span class="keyword">ON</span><span class="operator">&lt;</span>对象类型<span class="operator">&gt;</span><span class="operator">&lt;</span>对象名<span class="operator">&gt;</span>[,对象类型<span class="operator">&gt;</span><span class="operator">&lt;</span>对象名<span class="operator">&gt;</span>小…</span><br><span class="line"><span class="keyword">FROM</span><span class="operator">&lt;</span>用户<span class="operator">&gt;</span>[,用户<span class="operator">&gt;</span>]…</span><br><span class="line">[CASCADE<span class="operator">|</span>RESTRICT];</span><br><span class="line">级联（CASCADE)</span><br></pre></td></tr></table></figure></li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2023/02/20/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E5%BA%93/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/" rel="tag">sql</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2023/02/20/%E6%97%A5%E5%89%A7%E3%80%8Amother%E3%80%8B/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            日剧《mother》
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2021/07/25/%E9%A2%91%E7%8E%87%E4%B8%8E%E9%A2%91%E6%AE%B5/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">频率与频段</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "q6eMjpfMBbEYafB7fCWVoPi3-gzGzoHsz",
+    app_key: "ms1JOT0gYQ3kfYOLqRCjflBw",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2023
+        <i class="ri-heart-fill heart_icon"></i> myzyzy
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="https://material-image.pages.dev/gallery/football.svg" alt="Sharing life"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/gallery">相册</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/music">音乐</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/%3C%E5%9C%B0%E5%9D%80%3E">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/%3C%E5%9C%B0%E5%9D%80%3E">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+  </div>
+</body>
+
+</html>

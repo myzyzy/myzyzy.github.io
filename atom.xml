@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-07-25T15:34:19.418Z</updated>
+  <updated>2023-02-20T09:51:21.571Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,50 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>日剧《mother》</title>
+    <link href="http://example.com/2023/02/20/%E6%97%A5%E5%89%A7%E3%80%8Amother%E3%80%8B/"/>
+    <id>http://example.com/2023/02/20/%E6%97%A5%E5%89%A7%E3%80%8Amother%E3%80%8B/</id>
+    <published>2023-02-20T09:29:10.000Z</published>
+    <updated>2023-02-20T09:51:21.571Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;关于《母亲》结尾的疑问。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="电视剧" scheme="http://example.com/tags/%E7%94%B5%E8%A7%86%E5%89%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基本数据库</title>
+    <link href="http://example.com/2023/02/20/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <id>http://example.com/2023/02/20/%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E5%BA%93/</id>
+    <published>2023-02-20T07:12:17.000Z</published>
+    <updated>2023-02-20T09:20:59.933Z</updated>
+    
+    
+    <summary type="html">&lt;hr&gt;
+&lt;hr&gt;
+&lt;h1 id=&quot;SQL语言的查询格式&quot;&gt;&lt;a href=&quot;#SQL语言的查询格式&quot; class=&quot;headerlink&quot; title=&quot;SQL语言的查询格式&quot;&gt;&lt;/a&gt;SQL语言的查询格式&lt;/h1&gt;&lt;p&gt;SELECT /&lt;em&gt;子句用于来制定查询的字段&lt;/em&gt;/&lt;/p&gt;
+&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;SELECT&lt;/span&gt; [&lt;span class=&quot;keyword&quot;&gt;ALL&lt;/span&gt;&lt;span class=&quot;operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;keyword&quot;&gt;DISTINCT&lt;/span&gt;]  &lt;span class=&quot;operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;operator&quot;&gt;*&lt;/span&gt;目标列&lt;span class=&quot;operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;operator&quot;&gt;*&lt;/span&gt;表达式&lt;span class=&quot;operator&quot;&gt;&amp;gt;&lt;/span&gt; [别名] [,&lt;span class=&quot;operator&quot;&gt;&amp;lt;&lt;/span&gt;目标列表达式&lt;span class=&quot;operator&quot;&gt;&amp;gt;&lt;/span&gt; [别名]]...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;FROM&lt;/span&gt;  &lt;span class=&quot;operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;operator&quot;&gt;*&lt;/span&gt;表名&lt;span class=&quot;operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;operator&quot;&gt;*&lt;/span&gt;或视图名&lt;span class=&quot;operator&quot;&gt;&amp;gt;&lt;/span&gt; [别名] [,&lt;span class=&quot;operator&quot;&gt;&amp;lt;&lt;/span&gt;表名或视图名&lt;span class=&quot;operator&quot;&gt;&amp;gt;&lt;/span&gt; [别名]]...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[&lt;span class=&quot;keyword&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;&amp;lt;&lt;/span&gt;条件表达式&lt;span class=&quot;operator&quot;&gt;&amp;gt;&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[[&lt;span class=&quot;keyword&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;&amp;lt;&lt;/span&gt;列名&lt;span class=&quot;operator&quot;&gt;&amp;gt;&lt;/span&gt; [&lt;span class=&quot;keyword&quot;&gt;HAVING&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;&amp;lt;&lt;/span&gt;条件表达式&lt;span class=&quot;operator&quot;&gt;&amp;gt;&lt;/span&gt;]]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[[&lt;span class=&quot;keyword&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;&amp;lt;&lt;/span&gt;列名&lt;span class=&quot;operator&quot;&gt;&amp;gt;&lt;/span&gt; [&lt;span class=&quot;keyword&quot;&gt;ASC&lt;/span&gt;&lt;span class=&quot;operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;keyword&quot;&gt;DESC&lt;/span&gt;]];&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="sql语言" scheme="http://example.com/categories/sql%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="sql" scheme="http://example.com/tags/sql/"/>
+    
+  </entry>
+  
+  <entry>
     <title>频率与频段</title>
     <link href="http://example.com/2021/07/25/%E9%A2%91%E7%8E%87%E4%B8%8E%E9%A2%91%E6%AE%B5/"/>
     <id>http://example.com/2021/07/25/%E9%A2%91%E7%8E%87%E4%B8%8E%E9%A2%91%E6%AE%B5/</id>
     <published>2021-07-25T15:31:04.000Z</published>
-    <updated>2021-07-25T15:34:19.418Z</updated>
+    <updated>2023-02-19T17:04:26.429Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;频率与频段&quot;&gt;&lt;a href=&quot;#频率与频段&quot; class=&quot;headerlink&quot; title=&quot;频率与频段&quot;&gt;&lt;/a&gt;频率与频段&lt;/h1&gt;&lt;p&gt;&amp;ensp;&amp;ensp;电磁波可以搭载信息，不同波长的电磁波有不同的用途。&lt;/p&gt;</summary>
@@ -40,7 +79,7 @@
     <link href="http://example.com/2021/07/11/centos8%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E7%AE%A1%E7%90%86/"/>
     <id>http://example.com/2021/07/11/centos8%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E7%AE%A1%E7%90%86/</id>
     <published>2021-07-11T10:38:40.000Z</published>
-    <updated>2021-07-11T10:43:27.619Z</updated>
+    <updated>2023-02-19T17:04:26.437Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;centos8网络基本管理&quot;&gt;&lt;a href=&quot;#centos8网络基本管理&quot; class=&quot;headerlink&quot; title=&quot;centos8网络基本管理&quot;&gt;&lt;/a&gt;centos8网络基本管理&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;简介：&lt;/strong&gt; centos8没有传统的network.service，centos8采用NetworkManager.service服务管理网络。NM能管理各种网络：有线网卡、无线网卡 ， 动态ip、静态ip，以太网、非以太网，物理网卡、虚拟网卡。&lt;/p&gt;</summary>
@@ -59,7 +98,7 @@
     <link href="http://example.com/2021/06/10/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
     <id>http://example.com/2021/06/10/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/</id>
     <published>2021-06-10T06:37:04.000Z</published>
-    <updated>2021-06-17T14:08:15.856Z</updated>
+    <updated>2023-02-19T17:04:26.425Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;内网渗透&quot;&gt;&lt;a href=&quot;#内网渗透&quot; class=&quot;headerlink&quot; title=&quot;内网渗透&quot;&gt;&lt;/a&gt;内网渗透&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;介绍：&lt;/strong&gt;  攻击者通过边界主机进入内网，往往会利用它当跳板进行横向渗透，但现在的内部网络大多部署了很多安全设备，网络结构错综复杂，对于某些系统的访问会受到各种阻挠，这就需要借助代理去突破这些限制，因此面对不同的网络环境对于代理的选择及使用显得格外重要。&lt;br&gt;&lt;strong&gt;情景介绍：&lt;/strong&gt; 我的本地机子网段为10开头的看成公网，电脑中装有虚拟机网段为192网段看成内网&lt;/p&gt;</summary>
@@ -78,7 +117,7 @@
     <link href="http://example.com/2021/06/09/docker%E5%9F%BA%E7%A1%80/"/>
     <id>http://example.com/2021/06/09/docker%E5%9F%BA%E7%A1%80/</id>
     <published>2021-06-09T14:21:38.000Z</published>
-    <updated>2021-06-09T14:24:44.123Z</updated>
+    <updated>2023-02-19T17:04:26.441Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;Docker的常用命令&quot;&gt;&lt;a href=&quot;#Docker的常用命令&quot; class=&quot;headerlink&quot; title=&quot;Docker的常用命令&quot;&gt;&lt;/a&gt;Docker的常用命令&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;帮助命令&lt;/strong&gt;  &lt;/p&gt;
@@ -100,7 +139,7 @@
     <link href="http://example.com/2021/06/09/linux%E5%AE%89%E8%A3%85MySQL-%E7%94%A8glibc%E7%9A%84%E6%96%B9%E6%B3%95/"/>
     <id>http://example.com/2021/06/09/linux%E5%AE%89%E8%A3%85MySQL-%E7%94%A8glibc%E7%9A%84%E6%96%B9%E6%B3%95/</id>
     <published>2021-06-09T13:50:09.000Z</published>
-    <updated>2021-07-11T10:47:47.455Z</updated>
+    <updated>2023-02-19T17:04:26.441Z</updated>
     
     
     <summary type="html">&lt;p&gt;注：本次安装参照B站up主“bili逍遥bili”，采用glibc包安装。&lt;br&gt;所需工具：Redhat Linux（虚拟机），MobaXterm（终端工具），MySQL-5.6.44-1.el7.x86_64.rpm-bundle.tar（官网下载）。&lt;br&gt;&lt;a href=&quot;https://cdn.mysql.com/archives/mysql-5.6/mysql-5.6.44-linux-glibc2.12-x86_64.tar.gz&quot;&gt;下载地址&lt;/a&gt;&lt;/p&gt;</summary>
@@ -119,7 +158,7 @@
     <link href="http://example.com/2021/06/07/%E7%94%A8telnet%E8%BF%9E%E6%8E%A5linux/"/>
     <id>http://example.com/2021/06/07/%E7%94%A8telnet%E8%BF%9E%E6%8E%A5linux/</id>
     <published>2021-06-07T11:13:46.000Z</published>
-    <updated>2021-06-07T15:35:44.005Z</updated>
+    <updated>2023-02-19T17:04:26.433Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;用telnet连接linux&quot;&gt;&lt;a href=&quot;#用telnet连接linux&quot; class=&quot;headerlink&quot; title=&quot;用telnet连接linux&quot;&gt;&lt;/a&gt;用telnet连接linux&lt;/h2&gt;&lt;p&gt;telnet传输没有经过加密，是明文的，安全性不如SSH不建议使用&lt;br&gt;提前关闭selinux和防火墙，配置好yum仓库&lt;/p&gt;
